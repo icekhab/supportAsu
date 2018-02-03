@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Користувачі";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.IsCreate = true;
+}
+<main class="content content-users">
+    <div class="new-user-add">
+            <div class="input-field">
+                <span class="input-lable">Пошук</span>
+                <input type="text" class="sa-input" id="search_user">
+                <button class='btn--orange search-btn' id="user_search_btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+
+        <h2>Додати користувача</h2>
+        <div>
+            @Html.Partial("AddEdit")
+        </div>
+    </div>
+    <div id="users_list" class="single-putchas-list">
+        
+    </div>
+</main>
+<div class="modal modal-edit-user" style="display:none">
+    <div class="pop-up">
+        <button class="close-modal-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+        @{ ViewBag.IsCreate = false;}
+        @Html.Partial("AddEdit")
+    </div>
+</div>
+<script src="~/Scripts/Custom/User/AddEdit.js"></script>
+<script src="~/Scripts/Custom/removeItem.js"></script>
+<script>
+    var addeditUrl = '@Url.Action("AddEdit","User")';
+    var checkLoginUrl = '@Url.Action("CheckLogin","User")';
+    var userListUrl = '@Url.Action("GetUsers","User")';
+    var editUserUrl = '@Url.Action("Edit","User")';
+</script>

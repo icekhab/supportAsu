@@ -1,0 +1,203 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.Web", "SupportAsu.Web\SupportAsu.Web.csproj", "{4EF5C161-F769-4761-A382-D6631BC63EC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{513B3F3C-8CED-40D3-9EE3-0B54850E0FA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dictionary", "Dictionary", "{CC6BA97A-5CCF-4A27-810F-D374EC3CBB53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserManagment", "UserManagment", "{D979C2A8-910D-4B75-BFC3-27340DA03BD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.EntityFramework", "SupportAsu.EntityFramework\SupportAsu.EntityFramework.csproj", "{24B2B0FC-CA1B-47D2-A44D-5D71079CACFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.Model", "SupportAsu.Model\SupportAsu.Model.csproj", "{E3791261-0E15-4612-AEBA-74840E2C5129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.Dictionary", "SupportAsu.Dictionary\SupportAsu.Dictionary.csproj", "{47307342-7337-4FB8-87CD-466A64D40CDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainController", "DomainController\DomainController.csproj", "{8342D96A-C9E8-48FC-A6FF-E0823B0C7102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagment", "UserManagment\UserManagment.csproj", "{EF9C2D86-57D8-4498-A211-E7A7394FD6B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{BB5ED4A1-6E12-470C-89BB-2C87E7750B14}"
+	ProjectSection(SolutionItems) = preProject
+		Libs\Dynamic.dll = Libs\Dynamic.dll
+		Libs\Newtonsoft.Json.dll = Libs\Newtonsoft.Json.dll
+		Libs\Newtonsoft.Json.xml = Libs\Newtonsoft.Json.xml
+		Libs\PagedList.dll = Libs\PagedList.dll
+		Libs\PagedList.Mvc.dll = Libs\PagedList.Mvc.dll
+		Libs\System.Web.Mvc.dll = Libs\System.Web.Mvc.dll
+		Libs\System.Web.Mvc.xml = Libs\System.Web.Mvc.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.DTO", "SupportAsu.DTO\SupportAsu.DTO.csproj", "{F72E3DF1-86DA-4B58-8285-33B4803B77FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.WebApi", "SupportAsu.WebApi\SupportAsu.WebApi.csproj", "{FA74C36C-E1DC-4A71-AE45-910DEB0E3DA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Claim", "Claim", "{5E43132F-35D7-4996-AEC3-ECC5D1AD3F04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.Claim", "SupportAsu.Claim\SupportAsu.Claim.csproj", "{C2A1BD1D-2592-49B9-A544-E118BB0D836F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task", "Task", "{A71B7D2E-E347-4073-907C-FC8C2B225655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.Task", "SupportAsu.Task\SupportAsu.Task.csproj", "{B24E1525-8D5C-4CB5-A376-713F66D2F22A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Equipments", "Equipments", "{CE486F3A-0E39-414D-8429-FB3610ACBE98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equipments", "Equipments\Equipments.csproj", "{D9244732-C0CE-493D-AEAA-B3362E909FDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prophylaxis", "Prophylaxis", "{8124A0DC-8884-40D0-AA29-B08267CF2235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.Prophylaxis", "SupportAsu.Prophylaxis\SupportAsu.Prophylaxis.csproj", "{94187246-0167-4391-BC30-7736C47B1518}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectorShedules", "ProjectorShedules", "{20734288-878A-4516-AFF5-772A960EC713}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.ProjectorShedule", "SupportAsu.ProjectorShedule\SupportAsu.ProjectorShedule.csproj", "{DC445535-0625-4A3A-993B-29A51890BA33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{479714E7-21AD-407B-A606-9E7C3A077C26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportAsu.User", "SupportAsu.User\SupportAsu.User.csproj", "{2E5AE44D-BDD6-4C3C-B796-7DD92D307D26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EF5C161-F769-4761-A382-D6631BC63EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EF5C161-F769-4761-A382-D6631BC63EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EF5C161-F769-4761-A382-D6631BC63EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EF5C161-F769-4761-A382-D6631BC63EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B2B0FC-CA1B-47D2-A44D-5D71079CACFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B2B0FC-CA1B-47D2-A44D-5D71079CACFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B2B0FC-CA1B-47D2-A44D-5D71079CACFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B2B0FC-CA1B-47D2-A44D-5D71079CACFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3791261-0E15-4612-AEBA-74840E2C5129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3791261-0E15-4612-AEBA-74840E2C5129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3791261-0E15-4612-AEBA-74840E2C5129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3791261-0E15-4612-AEBA-74840E2C5129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47307342-7337-4FB8-87CD-466A64D40CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47307342-7337-4FB8-87CD-466A64D40CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47307342-7337-4FB8-87CD-466A64D40CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47307342-7337-4FB8-87CD-466A64D40CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8342D96A-C9E8-48FC-A6FF-E0823B0C7102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8342D96A-C9E8-48FC-A6FF-E0823B0C7102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8342D96A-C9E8-48FC-A6FF-E0823B0C7102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8342D96A-C9E8-48FC-A6FF-E0823B0C7102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9C2D86-57D8-4498-A211-E7A7394FD6B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9C2D86-57D8-4498-A211-E7A7394FD6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9C2D86-57D8-4498-A211-E7A7394FD6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9C2D86-57D8-4498-A211-E7A7394FD6B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72E3DF1-86DA-4B58-8285-33B4803B77FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72E3DF1-86DA-4B58-8285-33B4803B77FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72E3DF1-86DA-4B58-8285-33B4803B77FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72E3DF1-86DA-4B58-8285-33B4803B77FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA74C36C-E1DC-4A71-AE45-910DEB0E3DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA74C36C-E1DC-4A71-AE45-910DEB0E3DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA74C36C-E1DC-4A71-AE45-910DEB0E3DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA74C36C-E1DC-4A71-AE45-910DEB0E3DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2A1BD1D-2592-49B9-A544-E118BB0D836F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A1BD1D-2592-49B9-A544-E118BB0D836F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A1BD1D-2592-49B9-A544-E118BB0D836F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A1BD1D-2592-49B9-A544-E118BB0D836F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B24E1525-8D5C-4CB5-A376-713F66D2F22A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B24E1525-8D5C-4CB5-A376-713F66D2F22A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B24E1525-8D5C-4CB5-A376-713F66D2F22A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B24E1525-8D5C-4CB5-A376-713F66D2F22A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9244732-C0CE-493D-AEAA-B3362E909FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9244732-C0CE-493D-AEAA-B3362E909FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9244732-C0CE-493D-AEAA-B3362E909FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9244732-C0CE-493D-AEAA-B3362E909FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94187246-0167-4391-BC30-7736C47B1518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94187246-0167-4391-BC30-7736C47B1518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94187246-0167-4391-BC30-7736C47B1518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94187246-0167-4391-BC30-7736C47B1518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC445535-0625-4A3A-993B-29A51890BA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC445535-0625-4A3A-993B-29A51890BA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC445535-0625-4A3A-993B-29A51890BA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC445535-0625-4A3A-993B-29A51890BA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E5AE44D-BDD6-4C3C-B796-7DD92D307D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5AE44D-BDD6-4C3C-B796-7DD92D307D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5AE44D-BDD6-4C3C-B796-7DD92D307D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5AE44D-BDD6-4C3C-B796-7DD92D307D26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{24B2B0FC-CA1B-47D2-A44D-5D71079CACFA} = {513B3F3C-8CED-40D3-9EE3-0B54850E0FA3}
+		{E3791261-0E15-4612-AEBA-74840E2C5129} = {513B3F3C-8CED-40D3-9EE3-0B54850E0FA3}
+		{47307342-7337-4FB8-87CD-466A64D40CDC} = {CC6BA97A-5CCF-4A27-810F-D374EC3CBB53}
+		{8342D96A-C9E8-48FC-A6FF-E0823B0C7102} = {D979C2A8-910D-4B75-BFC3-27340DA03BD8}
+		{EF9C2D86-57D8-4498-A211-E7A7394FD6B3} = {D979C2A8-910D-4B75-BFC3-27340DA03BD8}
+		{F72E3DF1-86DA-4B58-8285-33B4803B77FE} = {513B3F3C-8CED-40D3-9EE3-0B54850E0FA3}
+		{C2A1BD1D-2592-49B9-A544-E118BB0D836F} = {5E43132F-35D7-4996-AEC3-ECC5D1AD3F04}
+		{B24E1525-8D5C-4CB5-A376-713F66D2F22A} = {A71B7D2E-E347-4073-907C-FC8C2B225655}
+		{D9244732-C0CE-493D-AEAA-B3362E909FDD} = {CE486F3A-0E39-414D-8429-FB3610ACBE98}
+		{94187246-0167-4391-BC30-7736C47B1518} = {8124A0DC-8884-40D0-AA29-B08267CF2235}
+		{DC445535-0625-4A3A-993B-29A51890BA33} = {20734288-878A-4516-AFF5-772A960EC713}
+		{2E5AE44D-BDD6-4C3C-B796-7DD92D307D26} = {479714E7-21AD-407B-A606-9E7C3A077C26}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 15
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://supportasuteam.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DomainController\\DomainController.csproj
+		SccProjectTopLevelParentUniqueName1 = SupportAsu.sln
+		SccProjectName1 = DomainController
+		SccLocalPath1 = DomainController
+		SccProjectUniqueName2 = Equipments\\Equipments.csproj
+		SccProjectTopLevelParentUniqueName2 = SupportAsu.sln
+		SccProjectName2 = Equipments
+		SccLocalPath2 = Equipments
+		SccProjectUniqueName3 = SupportAsu.Claim\\SupportAsu.Claim.csproj
+		SccProjectTopLevelParentUniqueName3 = SupportAsu.sln
+		SccProjectName3 = SupportAsu.Claim
+		SccLocalPath3 = SupportAsu.Claim
+		SccProjectUniqueName4 = SupportAsu.Dictionary\\SupportAsu.Dictionary.csproj
+		SccProjectTopLevelParentUniqueName4 = SupportAsu.sln
+		SccProjectName4 = SupportAsu.Dictionary
+		SccLocalPath4 = SupportAsu.Dictionary
+		SccProjectUniqueName5 = SupportAsu.DTO\\SupportAsu.DTO.csproj
+		SccProjectTopLevelParentUniqueName5 = SupportAsu.sln
+		SccProjectName5 = SupportAsu.DTO
+		SccLocalPath5 = SupportAsu.DTO
+		SccProjectUniqueName6 = SupportAsu.EntityFramework\\SupportAsu.EntityFramework.csproj
+		SccProjectTopLevelParentUniqueName6 = SupportAsu.sln
+		SccProjectName6 = SupportAsu.EntityFramework
+		SccLocalPath6 = SupportAsu.EntityFramework
+		SccProjectUniqueName7 = SupportAsu.Model\\SupportAsu.Model.csproj
+		SccProjectTopLevelParentUniqueName7 = SupportAsu.sln
+		SccProjectName7 = SupportAsu.Model
+		SccLocalPath7 = SupportAsu.Model
+		SccProjectUniqueName8 = SupportAsu.ProjectorShedule\\SupportAsu.ProjectorShedule.csproj
+		SccProjectTopLevelParentUniqueName8 = SupportAsu.sln
+		SccProjectName8 = SupportAsu.ProjectorShedule
+		SccLocalPath8 = SupportAsu.ProjectorShedule
+		SccProjectUniqueName9 = SupportAsu.Prophylaxis\\SupportAsu.Prophylaxis.csproj
+		SccProjectTopLevelParentUniqueName9 = SupportAsu.sln
+		SccProjectName9 = SupportAsu.Prophylaxis
+		SccLocalPath9 = SupportAsu.Prophylaxis
+		SccProjectUniqueName10 = SupportAsu.Task\\SupportAsu.Task.csproj
+		SccProjectTopLevelParentUniqueName10 = SupportAsu.sln
+		SccProjectName10 = SupportAsu.Task
+		SccLocalPath10 = SupportAsu.Task
+		SccProjectUniqueName11 = SupportAsu.Web\\SupportAsu.Web.csproj
+		SccProjectName11 = SupportAsu.Web
+		SccLocalPath11 = SupportAsu.Web
+		SccProjectUniqueName12 = SupportAsu.WebApi\\SupportAsu.WebApi.csproj
+		SccProjectName12 = SupportAsu.WebApi
+		SccLocalPath12 = SupportAsu.WebApi
+		SccProjectUniqueName13 = UserManagment\\UserManagment.csproj
+		SccProjectTopLevelParentUniqueName13 = SupportAsu.sln
+		SccProjectName13 = UserManagment
+		SccLocalPath13 = UserManagment
+		SccProjectUniqueName14 = SupportAsu.User\\SupportAsu.User.csproj
+		SccProjectTopLevelParentUniqueName14 = SupportAsu.sln
+		SccProjectName14 = SupportAsu.User
+		SccLocalPath14 = SupportAsu.User
+	EndGlobalSection
+EndGlobal

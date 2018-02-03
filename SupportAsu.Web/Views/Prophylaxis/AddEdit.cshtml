@@ -1,0 +1,61 @@
+﻿@model SupportAsu.Model.Prophylaxis
+    @{ 
+        var formId = (bool)ViewBag.IsCreate? "prophylaxis_create_form" : "prophylaxis_edit_form";
+    }
+<form id="@formId" class="prophylaxis_form">
+    @Html.HiddenFor(x => x.Id )
+    <div class="input-field sa-select">
+        <span class="input-lable">Аудиторія</span>
+        @Html.HiddenFor(x => x.AuditoryId, new { @class = "sa-hidden-input"  })
+        <input type="text" class="sa-input" placeholder="Аудиторія" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.AuditoryList as SelectList)
+        @Html.ValidationMessageFor(x => x.AuditoryId, null, new { @class = "help-error" })
+    </div>
+    <div class="input-field sa-select">
+        <span class="input-lable">День тижня</span>
+        @Html.HiddenFor(x => x.DayId, new { @class = "sa-hidden-input" })
+        <input type="text" class="sa-input" placeholder="День тижня" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.DaysList as SelectList)
+        @Html.ValidationMessageFor(x => x.DayId, null, new { @class = "help-error" })
+    </div>
+    <div class="input-field sa-select">
+        <span class="input-lable">Пара</span>
+        @Html.HiddenFor(x => x.LessonId, new { @class = "sa-hidden-input" })
+        <input type="text" class="sa-input" placeholder="Пара" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.LessonsList as SelectList)
+        @Html.ValidationMessageFor(x => x.LessonId, null, new { @class = "help-error" })
+    </div>
+    <div class="input-field sa-select">
+        <span class="input-lable">Відповідальний</span>
+        @Html.HiddenFor(x => x.ResponsibleId, new { @class = "sa-hidden-input" })
+        <input type="text" class="sa-input" placeholder="Відповідальний" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.ResposibileList as SelectList)
+        @Html.ValidationMessageFor(x => x.ResponsibleId, null, new { @class = "help-error" })
+    </div>
+    <div class="input-field sa-textarea">
+        <span class="input-lable">Примітка</span>
+        @Html.TextAreaFor(x => x.Note, new { @class = "sa-input" })
+    </div>
+    <button id="prophylaxis_save" class='btn--green'>Зберегти</button>
+</form>
+
+<script>
+    $(function ()
+    {
+        if (typeof isFormExists != "undefined") {
+            if (isFormExists && $('#@formId').length > 0) {
+                $("#@formId").data("validator").settings.ignore = "";
+            }
+        }
+        else {
+            if ($('#@formId').length > 0) {
+                $("#@formId").data("validator").settings.ignore = "";
+            }
+        }
+    })
+  
+    </script>

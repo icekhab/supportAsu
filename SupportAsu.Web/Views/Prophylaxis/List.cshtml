@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Список профілактик";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.IsCreate = true;
+}
+
+<main class="content content-putchases content-prophylaxis">
+    <div class="filters">
+        <div class="fix-content-putchases">
+            <h2>Додати</h2>
+            @Html.Partial("AddEdit"@*,new SupportAsu.Model.Prophylaxis()*@)
+        </div>
+    </div>
+    <div class="putchases" id="putchases">
+        @Html.Action("GetProphylaxisList", "Prophylaxis")
+    </div>
+</main>
+<div class="modal modal-edit-prophylaxis" style="display:none">
+    <div class="pop-up">
+        <button class="close-modal-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+        @{ ViewBag.IsCreate = false;}
+        @Html.Partial("AddEdit")
+    </div>
+</div>
+<script src="~/Scripts/Custom/removeItem.js"></script>
+<script src="~/Scripts/Custom/Prophylaxis/AddEdit.js"></script>
+<script>
+    var addeditUrl = '@Url.Action("AddEdit", "Prophylaxis")';
+    var listUrl = '@Url.Action("GetProphylaxisList", "Prophylaxis")'
+    var editUrl = '@Url.Action("Edit", "Prophylaxis")';
+</script>

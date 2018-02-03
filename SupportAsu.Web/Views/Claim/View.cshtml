@@ -1,0 +1,72 @@
+﻿@model SupportAsu.DTO.Claim.ClaimViewModel
+@using SupportAsu.DTO.Dictionary
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<main class="content content-single-claim">
+    <div class="column-block">
+        <div class="column">
+            <div class="sa-block single-claim-info">
+                <div class="claim-item claim-item-title">
+                    <div class="claim-theme"><span>Тема</span></div>
+                    <div class="claim-category"><span>Категорія</span></div>
+                    <div class="claim-date"><span>Дата подання</span></div>
+                    @if (Model.CloseDate.HasValue)
+                    {
+                        <div class="claim-date"><span>Дата завершення</span></div>
+                    }
+                    <div><span>Автор</span></div>
+                    @if (Model.Auditory != null)
+                    {
+                        <div class="claim-status"><span>Аудиторія</span></div>
+                    }
+                    <div class="claim-status"><span>Статус</span></div>
+                    <div class="claim-text"><span>Текст</span></div>
+                </div>
+                <div class="claim-item">
+                    <div class="claim-theme"><span>@Model.Title</span></div>
+                    <div class="claim-category"><span>@Model.Category</span></div>
+                    <div class="claim-date"><span>@Model.Date.ToShortDateString()</span></div>
+                    @if (Model.CloseDate.HasValue)
+                    {
+                        <div class="claim-date"><span>@Model.CloseDate.Value.ToShortDateString()</span></div>
+                    }
+                    <div><span>@Model.Author</span></div>
+                    @if (Model.Auditory != null)
+                    {
+                        <div class="claim-auditory"><span>@Model.Auditory.Value</span></div>
+                    }
+                    <div class="claim-status"><span class="claim--@Model.Status.Code.ToLower()">@Model.Status.Value</span></div>
+                    <div><span>@Model.Text</span></div>
+                </div>
+                @if (Model.isNeedApprove && User.IsInRole(SupportAsu.DTO.Roles.Role.Director))
+                {
+                    <a id="approve_link" class="btn--green">Підтвердити</a>
+                    <a id="reject_link" class="btn--red">Відхилити</a>
+                }
+                @if (!Model.isNeedApprove && User.IsInRole(SupportAsu.DTO.Roles.Role.Administrator))
+                {
+                    @*<a href="@Url.Action("Create","Task",new { claimId=Model.Id})" class="btn--green">Створити завдання</a>*@
+                    <div class="input-field sa-select">
+                        <input type="hidden" class="sa-hidden-input" id="status">
+                        <input type="text" class="sa-input" placeholder="Змінити статус" readonly>
+                        @Html.CreateList(ViewBag.Statuses as SelectList)
+
+                    </div>
+                    @*<a href="#" class="btn--orange">Додати до завдання</a>*@
+                }
+            </div>
+        </div>
+        @Html.Partial("CommentsList", Model)
+    </div>
+</main>
+<script src="~/Scripts/Custom/Claim/comment-claim.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/Custom/Claim/ViewClaim.js"></script>
+<script>
+    var changeStatusUrl = '@Url.Action("ChangeStatus","Claim",new { id=Model.Id})';
+    var approveUrl = '@Url.Action("Approve","Claim",new { id=Model.Id})';
+    var rejectUrl = '@Url.Action("Reject","Claim",new { id=Model.Id})';
+    var homeUrl = '@Url.Action("List","Claim",new { isAll=true})';
+</script>

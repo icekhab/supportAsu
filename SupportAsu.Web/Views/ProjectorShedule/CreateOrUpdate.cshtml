@@ -1,0 +1,95 @@
+﻿@model SupportAsu.Model.ProjectorShedule
+@{
+    Layout = null;
+    var formId = ViewBag.IsCreate ? "create_projector_shedule_form" : "update_projector_shedule_form";
+}
+
+<form id="@formId" action="">
+    @Html.HiddenFor(x=>x.Id, new {@class = "input_projector_shedule_id" })
+
+    <div class="input-field">
+        <span class="input-lable">Викладач</span>
+        @Html.TextBoxFor(x => x.Teacher, new {@class = "sa-input input_projector_shedule_teacher" })
+        <span class="required-field">*</span>
+        @Html.ValidationMessageFor(x => x.Teacher, null, new {@class = "help-error"})
+    </div>
+    
+    <div class="input-field sa-select">
+        <span class="input-lable">Відповідальний</span>
+        @Html.HiddenFor(x => x.ResponsibleId, new { @class = "sa-hidden-input input_projector_responsible_id" })
+        <input type="text" class="sa-input" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.Responsibles as SelectList)
+        @Html.ValidationMessageFor(x => x.ResponsibleId, null, new { @class = "help-error" })
+    </div>
+
+    <div class="input-field sa-select">
+        <span class="input-lable">Аудиторія</span>
+        @Html.HiddenFor(x => x.AuditoryId, new {@class = "sa-hidden-input input_projector_shedule_auditory_id" })
+        <input type="text" class="sa-input" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.Auditories as SelectList)
+        @Html.ValidationMessageFor(x => x.AuditoryId, null, new {@class = "help-error "})
+    </div>
+
+    <div class="input-field sa-select">
+        <span class="input-lable">Тиждень</span>
+        @Html.HiddenFor(x => x.WeekId, new {@class = "sa-hidden-input input_projector_shedule_week_id" })
+        <input type="text" class="sa-input" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.Weeks as SelectList)
+        @Html.ValidationMessageFor(x => x.WeekId, null, new {@class = "help-error"})
+    </div>
+
+    <div class="input-field sa-select">
+        <span class="input-lable">День</span>
+        @Html.HiddenFor(x => x.DayId, new {@class = "sa-hidden-input input_projector_shedule_day_id" })
+        <input type="text" class="sa-input" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.Days as SelectList)
+        @Html.ValidationMessageFor(x => x.DayId, null, new {@class = "help-error"})
+    </div>
+
+    <div class="input-field sa-select">
+        <span class="input-lable">Пара</span>
+        @Html.HiddenFor(x => x.LessonId, new {@class = "sa-hidden-input input_projector_lesson_id" })
+        <input type="text" class="sa-input" readonly>
+        <span class="required-field">*</span>
+        @Html.CreateList(ViewBag.Lessons as SelectList)
+        @Html.ValidationMessageFor(x => x.LessonId, null, new {@class = "help-error"})
+    </div>
+
+    <div class="input-field">
+        <span class="input-lable">Примітка</span>
+        @Html.TextAreaFor(x => x.Note, new {@class = "sa-input input_projector_note" })
+        @Html.ValidationMessageFor(x => x.Note, null, new {@class = "help-error"})
+    </div>
+
+    @if (ViewBag.IsCreate)
+    {
+        <button id="btn_@formId" type="submit" class='btn--green'>Додати</button>
+
+    }
+    else
+    {
+        <button id="btn_@formId" type="submit" class='btn--orange'>Зберегти</button>
+    }
+
+</form>
+
+<script>
+    $(function () {
+        $("#Id").rules("remove", "required");
+        if (typeof isFormExists != "undefined") {
+            if (isFormExists && $('#@formId').length > 0) {
+                $("#@formId").data("validator").settings.ignore = "";
+            }
+        }
+        else {
+            if ($('#@formId').length > 0) {
+                $("#@formId").data("validator").settings.ignore = "";
+            }
+        }
+    })
+
+</script>

@@ -1,0 +1,31 @@
+﻿@using SupportAsu.Model
+@model int
+@{
+    ViewBag.Title = "План закупівлі";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<main class="content content-single-putchases">
+    <input id="purchasePlanId" type="hidden" value="@Model" />
+    <div class="single-putchases-edit">
+        <div class="sa-block edit-putchas-info">
+            <h2>Змінити закупівлю</h2>
+            @Html.Action("Update", new { id = Model })
+        </div>
+        <div class="sa-block new-putchas-add">
+            <h2>Додати до закупівлі</h2>
+            @Html.Action("CreatePurchaseDetail", "PlanPurchase")
+        </div>
+    </div>
+
+    @Html.Action("GetPlanDetails", "PlanPurchase", new { id = Model })
+
+    <div class="modal modal-edit-putchas-detail">
+        <div class="pop-up">
+            <button class="close-modal-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+            @Html.Partial("CreateOrUpdatePurchaseDetail", new PurchaseDetail { Id = 1 })
+        </div>
+    </div>
+
+</main>
+<script src="~/Scripts/Custom/Equipments/newPurchaseDetail.js"></script>

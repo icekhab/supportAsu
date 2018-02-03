@@ -1,0 +1,90 @@
+﻿@model System.Collections.Generic.IList<SupportAsu.DTO.ProjectorShedules.ProjectorSheduleDto>
+
+@{
+    //ViewBag.Title = "title";
+    Layout = null;
+
+    var weeks = new Dictionary<string, string>
+    {
+        { "1", "Перший тиждень" },
+        { "2", "Другий тиждень" },
+    };
+
+    var days = new Dictionary<string, string>
+    {
+        { "1", "Пн" },
+        { "2", "Вт" },
+        { "3", "Ср" },
+        { "4", "Чт" },
+        { "5", "Пт" },
+        { "6", "Сб" },
+    };
+
+    var lessons = new List<string>
+    {
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+    };
+}
+
+<div class="projector-list">
+    @foreach (var week in weeks)
+    {
+        <div class="projector-week">
+            <h2>@week.Value</h2>
+            <div class="projector-week-content">
+                @foreach (var day in days)
+                {
+                    //div>
+                    <div class="sa-block projector-day">
+
+                        <h3>@day.Value</h3>
+                        @foreach (var lesson in lessons)
+                        {
+                            <div class="projector-block" id="lesson_block_@(week.Key)_@(day.Key)_@lesson">
+                                @{
+                                    var shedule = Model.FirstOrDefault(x => x.Week.Code == week.Key && x.Day.Code == day.Key && x.Lesson.Code == lesson);
+
+                                }
+                                @if (shedule != null)
+                                {
+                                    @*<div class="sheduleIdBlock" data-id="@shedule.Id" data-src="@Url.Action("Delete","ProjectorShedule")">
+                                            <span class="p-teacher">@shedule.Teacher</span>
+                                            <span class="p-auditory">@shedule.Auditory.Value</span>
+                                            <span class="p-teacher responsible_name">@shedule.ResponsibleName</span>
+                                            <button class="edit-projector-btn"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                            <button class="remove-projector-btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        </div>*@
+                                    <div class="sheduleIdBlock" data-id="@shedule.Id" data-src="@Url.Action("Delete", "ProjectorShedule")">
+                                        <span class="p-teacher">@shedule.Teacher</span>
+                                        <span class="p-auditory">@shedule.Auditory.Value</span>
+                                        <span class="p-teacher responsible_name">@shedule.ResponsibleName</span>
+
+                                        <button class="edit-projector-btn"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                        <button class="remove-projector-btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </div>
+                                        <div class="projector-note">
+                                            <span>@shedule.Note</span>
+                                        </div>
+                                }
+
+
+
+                            </div>
+                                    }
+                    </div>
+
+
+                                    }
+
+
+            </div>
+        </div>
+                                    }
+
+</div>
+

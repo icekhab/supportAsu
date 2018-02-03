@@ -1,0 +1,62 @@
+﻿@model SupportAsu.Model.Equipment
+
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<main class="content content-add-equipment">
+    <div class="sa-block  sa-block-full">
+        @using (Html.BeginForm("CreateOrUpdate", "Equipment", FormMethod.Post, new { @id = "create_or_update_equipment" }))
+        {
+            @Html.HiddenFor(x => x.Id)
+           
+            <div class="sa-block-full-left">
+                <div class="input-field">
+                    <span class="input-lable">@Html.LabelFor(x => x.Name)</span>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "sa-input" })
+                    <span class="required-field">*</span>
+                    @Html.ValidationMessageFor(x => x.Name, null, new { @class = "help-error" })
+                    <!-- <span class="help-error">Не вірно</span>-->
+                </div>
+                <div class="input-field">
+                    <span class="input-lable">@Html.LabelFor(x=>x.Number)</span>
+                    @Html.TextBoxFor(x => x.Number, new { @class = "sa-input" })
+                    <span class="required-field">*</span>
+                    @Html.ValidationMessageFor(x => x.Number, null, new { @class = "help-error" })
+                    <!-- <span class="help-error">Не вірно</span>-->
+                </div>
+                
+                <div class="input-field sa-select">
+                    <span class="input-lable">@Html.LabelFor(x => x.AuditoryId)</span>
+                    @Html.HiddenFor(x => x.AuditoryId, new { @class = "sa-hidden-input" })
+                    <input type="text" class="sa-input" readonly>
+                    <span class="required-field">*</span>
+                    @Html.CreateList(ViewBag.Auditory as SelectList)
+                    @Html.ValidationMessageFor(x => x.AuditoryId, null, new { @class = "help-error" })
+                </div>
+            </div>
+
+            <div class="sa-block-full-right">
+                <div class="input-field">
+                    <span class="input-lable">@Html.LabelFor(x => x.State)</span>
+                    @Html.TextBoxFor(x => x.State, new { @class = "sa-input" })
+                    @Html.ValidationMessageFor(x => x.State, null, new { @class = "help-error" })
+                </div>
+               
+                <div class="input-field sa-textarea">
+                    <span class="input-lable">@Html.LabelFor(x => x.Note)</span>
+                    @Html.TextAreaFor(x => x.Note, new { @class = "sa-input" })
+                    @Html.ValidationMessageFor(x => x.Note, null, new { @class = "help-error" })
+                </div>
+
+            </div>
+            <button type="submit" class="btn--green">Зберегти</button>
+
+        }
+        @*<form action="">
+            
+        </form>*@
+    </div>
+
+</main>

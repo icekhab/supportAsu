@@ -1,0 +1,101 @@
+﻿@model SupportAsu.DTO.Task.TaskModel
+@{
+    ViewBag.Title = Model.Id==0?"Створення завдання": "Редагування завдання";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    var ExecutorsList = Model.Executors==null?new List<int>():Model.Executors.Select(x=>x.Id).ToList();
+}
+<main class="content content-create-task">
+    <div class="sa-block sa-block-full">
+        @using (Html.BeginForm("AddEdit", "Task", FormMethod.Post, new { @id = "new-task" }))
+        {
+            @Html.HiddenFor(x=>x.Id)
+            @Html.HiddenFor(x=>x.MainTask.Id)
+            <div class="sa-block-full-left">
+                <div class="input-field">
+                    <span class="input-lable">Назва</span>
+                    @Html.TextBoxFor(x => x.Title, new { @class = "sa-input", @placeholder = "Введіть назву" })
+                    <span class="required-field">*</span>
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+
+                <div class="input-field sa-select">
+                    <span class="input-lable">Аудиторія</span>
+                    @Html.HiddenFor(x => x.Auditory.Id, new { @class = "sa-hidden-input" })
+                    <input type="text" class="sa-input" readonly placeholder="Аудиторія">
+                    <span class="required-field">*</span>
+                    @Html.CreateList(ViewBag.Auditory as SelectList)
+                    @Html.ValidationMessageFor(x => x.Auditory.Id, null, new { @class = "help-error" })
+                </div>
+                <div class="input-field sa-textarea">
+                    <span class="input-lable">Опис</span>
+                    @Html.TextAreaFor(x => x.Text, new { @placeholder = "Введіть опис", @class = "sa-input" })
+                    <span class="required-field">*</span>
+                    @Html.ValidationMessageFor(x => x.Text)
+                </div>
+            </div>
+            <div class="sa-block-full-right">
+                <div class="input-field">
+                    <span class="input-lable">Дата з</span>
+                    @Html.TextBoxFor(x => x.DateStart, Model.DateStart!=DateTime.MinValue?"{0:yyyy-MM-dd}":"", new { @class = "sa-input", @type = "date" })
+                    <span class="required-field">*</span>
+                    @Html.ValidationMessageFor(x => x.DateStart)
+                </div>
+                <div class="input-field">
+                    <span class="input-lable">Дата до</span>
+                    @Html.TextBoxFor(x => x.DateEnd, Model.DateEnd != DateTime.MinValue ? "{0:yyyy-MM-dd}" : "", new { @class = "sa-input", @type = "date" })
+                    <span class="required-field">*</span>
+                    @Html.ValidationMessageFor(x => x.DateEnd)
+                </div>
+                <div class="input-field sa-select">
+                    <span class="input-lable">Відповідальний</span>
+                    @Html.HiddenFor(x => x.Resposible.Id, new { @class = "sa-hidden-input responsible_v" })
+                    <input type="text" class="sa-input" placeholder="Відповідальний" readonly>
+                    <span class="required-field">*</span>
+                    @Html.CreateList(ViewBag.ResposibileList as SelectList)
+                    @Html.ValidationMessageFor(x => x.Resposible.Id, null, new { @class = "help-error" })
+                </div>
+                <div class="input-field sa-select-chekbox">
+                    <span class="input-lable">Виконавці</span>
+                    <ul class="checkbox-list">
+                        @foreach (var user in ViewBag.Executors as SelectList)
+                    {
+                        var isChecked = ExecutorsList.Contains(int.Parse(user.Value)).ToString().ToLower();
+                            <li>
+                                <div class="ckeckbox-form">
+                                    <span class="sa-checkbox @isChecked" data-checked="@isChecked"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                    <input type="checkbox" class="executors" name="executorsLst" value="@user.Value" @Html.Raw(Convert.ToBoolean(isChecked)==true?"checked":"")>
+                                    <span class="sa-lable">@user.Text</span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    @Html.Hidden("Executor","",new { @class= "executors_v" })
+                    @Html.ValidationMessage("Executor")
+                </div>
+            </div>
+                @*<button class="btn--orange">Додати заявку</button>*@
+                @*<button class="btn--blue new-subtask">Додати підзавдання</button>*@
+                <button type="submit" class="btn--green">Зберегти</button>
+        }
+
+    </div>
+</main>
+
+<script>
+    $(function () {
+        $("#Resposible_Id").rules("remove", "required");
+        $("#Auditory_Id").rules("remove", "required");
+        $("#MainTask_Id").rules("remove", "required");
+    })
+    $.validator.addMethod("executors_v", function (value, element) {
+        return $('.executors:checked').length != 0;
+    }, 'Не вибрано жодного виконавця');
+
+    $.validator.addMethod("responsible_v", function (value, element) {
+        return $('#Resposible_Id').val() != '' && $('#Resposible_Id').val() != '0';
+    }, "Поле 'Відповідальний' обов'язкове для завнення");
+
+    $('.executors').change(function () {
+        $('#Executor').valid();
+    });
+</script>

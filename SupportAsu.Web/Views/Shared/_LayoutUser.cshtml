@@ -1,0 +1,90 @@
+﻿@using SupportAsu.Helpers;
+@using SupportAsu.DTO.Roles;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/style.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/media.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/Custom/zepto.min.js"></script>
+</head>
+<body>
+    <div class="wrapp">
+        <aside class="main-nav">
+            <div class="nav-content">
+                <div class="start-logo">
+                    <img src="~/Content/themes/base/images/big-logo.png" />
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/Account"><i class="fa fa-address-card-o" aria-hidden="true"></i>Редагувати профіль</a></li>
+                        @{
+                            switch (User.Identity.GetUserInfo().Role)
+                            {
+                                case Role.User:
+                        <text>
+                            <li><a href="@Url.Action("Create", "Claim")"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Подати зявку</a></li>
+                            <li><a href="@Url.Action("List", "Claim")"><i class="fa fa-list-ul" aria-hidden="true"></i>Мої заявки</a></li>
+                        </text>
+                                    break;
+                                case Role.Director:
+                        <text>
+                            <li><a href="@Url.Action("Create", "Claim")"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Подати зявку</a></li>
+                            <li><a href="@Url.Action("List", "Claim")"><i class="fa fa-list-ul" aria-hidden="true"></i>Мої заявки</a></li>
+                            <li><a href="@Url.Action("List", "Claim", new { isAll = true })"><i class="fa fa-list-ul" aria-hidden="true"></i>Заявки</a></li>
+                            <li><a href="/projectorshedule"><i class="fa fa-desktop" aria-hidden="true"></i>Розклад проектора</a></li>
+                        </text>
+                                    break;
+                                case Role.Administrator:
+                        <text>
+                            <li><a href="@Url.Action("List", "Claim")"><i class="fa fa-list-ul" aria-hidden="true"></i>Заявки</a></li>
+                            <li><a href="@Url.Action("Create", "Task")"><i class="fa fa-magic" aria-hidden="true"></i>Створити завдання</a></li>
+                            <li><a href="@Url.Action("List", "Task")"><i class="fa fa-tasks" aria-hidden="true"></i>Завдання</a></li>
+                            <li><a href="@Url.Action("Archive", "Task")"><i class="fa fa-archive" aria-hidden="true"></i>Архів завдань</a></li>
+                            <li><a href="/equipments"><i class="fa fa-hdd-o" aria-hidden="true"></i>Обладнання</a></li>
+                            <li><a href="/projectorshedule"><i class="fa fa-desktop" aria-hidden="true"></i>Розклад проектора</a></li>
+                            <li><a href="@Url.Action("List","Prophylaxis")"><i class="fa fa-wrench" aria-hidden="true"></i>Розклад профілактик</a></li>
+                            <li><a href="/plans"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>План закупівлі</a></li>
+                            <li><a href="@Url.Action("List","User")"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Користувачі</a></li>
+                        </text>
+                                    break;
+                                case Role.Intern:
+                        <text>
+                            <li><a href="@Url.Action("List", "Task")"><i class="fa fa-tasks" aria-hidden="true"></i>Завдання</a></li>
+                            <li><a href="@Url.Action("List", "Equipment")"><i class="fa fa-hdd-o" aria-hidden="true"></i>Обладнання</a></li>
+                            <li><a href="/projectorshedule"><i class="fa fa-desktop" aria-hidden="true"></i>Розклад проектора</a></li>
+                            <li><a href="@Url.Action("List","Prophylaxis")"><i class="fa fa-wrench" aria-hidden="true"></i>Розклад профілактик</a></li>
+                        </text>
+                                    break;
+                            }}
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="main">
+            <header>
+                <div class="mobile-content">
+                    <button class="js-menu menu" type="button">
+                        <span class="bar"></span>
+                    </button>
+                </div>
+                <h1>@ViewBag.Title</h1>
+                <div class="header-profile">
+                    <span class="normal-text no-mobile">@User.Identity.GetUserInfo().Name</span>
+                    <a href="@Url.Action("Logoff","Account")" title="Вийти" class="exit-btn"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </header>
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/Scripts/Custom/script.js" charset="windows-1251"></script>
+
+</body>

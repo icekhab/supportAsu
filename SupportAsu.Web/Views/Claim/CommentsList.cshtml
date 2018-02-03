@@ -1,0 +1,18 @@
+﻿@model SupportAsu.DTO.Claim.ClaimViewModel
+<div class="column">
+    <div class="sa-block">
+        <h2>Коментарі</h2>
+        <div class="massege-content">
+            <ul id="scroll" class="claim_comments">
+                @foreach (var comment in Model.Comments.OrderBy(x=>x.Date))
+                {
+                    @Html.Partial("Comment",comment)
+                }
+            </ul>
+        </div>
+       @Html.Partial("CreateComment", new SupportAsu.DTO.Comment.CommentModel { ItemId = Model.Id })
+
+    </div>
+</div>
+
+

@@ -1,0 +1,12 @@
+﻿@model SupportAsu.DTO.Comment.CommentModel
+
+
+@using (Ajax.BeginForm("Comment", "Claim", new AjaxOptions { OnSuccess = "OnSuccess",OnBegin= "OnBegin" }, new { @class = "blog-comment-form" }))
+{
+    @Html.HiddenFor(x => x.ItemId)
+    <div class="input-field sa-textarea">
+        @Html.TextAreaFor(x => x.Text, new { @class = "sa-input", @placeholder = "Коментар" })
+        @Html.ValidationMessageFor(x => x.Text)
+    </div>
+            <button type="submit" class="btn--green">Відправити</button>
+}

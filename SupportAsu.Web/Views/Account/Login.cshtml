@@ -1,0 +1,52 @@
+﻿@model SupportAsu.DTO.LogOnModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="wrapp">
+    <div class="start-page">
+        <div class="start-logo">
+            <img src="~/Content/themes/base/images/big-logo.png" />
+        </div>
+        <div class="login-form">
+            <div class="sa-block login-pop-up">
+                <h2>Вхід в систему</h2>
+                @using (Html.BeginForm("Login", "Account", new { @ReturnUrl=ViewBag.ReturnUrl }))
+                {
+                    <div class="input-field">
+                        <span class="input-lable">Логін</span>
+                        @Html.TextBoxFor(x=>x.UserName,new {@class="sa-input", @placeholder="Введіть логін" })
+                        @*<input type="text" class="sa-input" placeholder="Логін" required>*@
+                        <span class="required-field">*</span>
+                        @Html.ValidationMessageFor(x => x.UserName,null, new { @class= "help-error" })
+                        @*<span class="help-error">Не вірно</span>*@
+                    </div>
+                    <div class="input-field">
+                        <span class="input-lable">Пароль</span>
+                        @Html.PasswordFor(x => x.Password, new { @class = "sa-input", @placeholder = "Введіть пароль" })
+                        @*<input type="text" class="sa-input" placeholder="Пароль" required>*@
+                        <span class="required-field">*</span>
+                        @Html.ValidationMessageFor(x => x.Password, null, new { @class = "help-error" })
+                    </div>
+                    @Html.ValidationSummary(true,null,new { @class="help-error"})
+                    @*<div class="ckeckbox-form">
+                        <span class="sa-checkbox false" data-checked="false"><i class="fa fa-check" aria-hidden="true"></i></span>
+                        <input id="remember-me" type="checkbox">
+                        <span class="sa-label">Запям'ятати пароль</span>
+                    </div>*@
+
+                    <button type="submit" class="btn--green">Вхід</button>
+                }
+            </div>
+        </div>
+        <div class="start-main">
+            <div class="start-advantages-list">
+                <ul>
+                    <li><img src="~/Content/themes/base/images/Account/Login/svg/edit.svg" /><span>Залишайте заявку на обслуговування</span></li>
+                    <li><img src="~/Content/themes/base/images/Account/Login/svg/notepad.svg" /><span>Слідкуйте за статусом заявки</span></li>
+                    <li><img src="~/Content/themes/base/images/Account/Login/svg/computer.svg" /><span>Додавайте коментарі до заявки</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

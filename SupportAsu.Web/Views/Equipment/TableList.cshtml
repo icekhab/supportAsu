@@ -1,0 +1,39 @@
+﻿@using PagedList.Mvc
+@model PagedList.StaticPagedList<SupportAsu.DTO.Equipments.EquipmentDto>
+@{
+    Layout = null;
+}
+
+<ul class="claims-list">
+    @foreach (var equipment in Model)
+    {
+        <li class="claim-item" data-src="@Url.Action("Delete","Equipment")" data-id="@equipment.Id">
+            <div class="claim-theme"><span>@equipment.Name</span></div>
+                    
+            <div class="claim-date"><span>@equipment.Number</span></div>
+
+            <div class="claim-date"><span>@equipment.Auditory</span></div>
+
+            <div class="claim-date"><span>@equipment.State</span></div>
+
+            <div class="eq-note"><span>@equipment.Note</span></div>
+
+            <div class="claim-date">
+                <a href="~/equipment/update/@equipment.Id" class="btn--orange btn-edit-equipment">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+                <button class="btn--red btn-remove-equipment remove-pop-up-btn">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </div>
+        </li>
+    }
+</ul>
+
+@if (Model.PageCount > 1)
+{
+    <div id="eq_pager" class="claim-pager">
+        @Html.PagedListPager(Model, x => "#")
+    </div>
+    <input type="hidden" id="number_pages" value="@Model.PageCount"/>
+}

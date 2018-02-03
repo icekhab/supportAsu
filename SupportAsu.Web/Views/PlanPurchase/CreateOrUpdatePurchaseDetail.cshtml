@@ -1,0 +1,35 @@
+﻿@model SupportAsu.Model.PurchaseDetail
+@{
+    Layout = null;
+    var formId = Model.Id == 0 ? "create_plan_detail" : "update_plan_detail";
+}
+
+<form id="form_@formId">
+    @Html.HiddenFor(x=>x.Id, new { @class = "detail_input_id" })
+    <div class="input-field">
+        <span class="input-lable">Назва</span>
+        @Html.TextBoxFor(x => x.Name, new {@class = "sa-input detail_input_name"})
+        <span class="required-field">*</span>
+        @Html.ValidationMessageFor(x => x.Name, null, new {@class = "help-error"})
+    </div>
+    <div class="input-field">
+        <span class="input-lable">Кількість</span>
+        @Html.TextBoxFor(x => x.Count, new {@class = "sa-input detail_input_count"})
+        <span class="required-field">*</span>
+        @Html.ValidationMessageFor(x => x.Count, null, new {@class = "help-error"})
+    </div>
+    <div class="input-field sa-textarea">
+        <span class="input-lable">Примітка</span>
+        @Html.TextAreaFor(x => x.Note, new {@class = "sa-input detail_input_note"})
+    </div>
+    @if (Model.Id == 0)
+    {
+        <button id="btn_@formId" type="submit" class='btn--green'>Додати</button>
+
+    }
+    else
+    {
+        <button id="btn_@formId" type="submit" class='btn--orange save-putchases'>Зберегти</button>
+    }
+
+</form>

@@ -1,0 +1,28 @@
+﻿@model IList<SupportAsu.Model.PurchaseDetail>
+@{
+    Layout = null;
+}
+
+<div class="single-putchas-list">
+    <div class="claim-item claim-list-header">
+        <div class="claim-theme detail_name_list"><span>Назва</span></div>
+        <div class="claim-date"><span>Кількість</span></div>
+        <div class="eq-note"><span>Примітка</span></div>
+        <div class="claim-date"></div>
+    </div>
+    <ul id="plan-list-detail_id" class="plan-list-detail claims-list">
+        @foreach (var detail in Model)
+        {
+            <li class="claim-item" data-src="@Url.Action("DeletePlanDetail","PlanPurchase")" data-id="@detail.Id">
+                <div class="claim-theme"><span>@detail.Name</span>
+                </div>
+                <div class="claim-date"><span>@detail.Count</span>
+                </div>
+                <div class="eq-note"><span>@detail.Note</span>
+                </div>
+                <div class="claim-theme"><button class="btn--orange single-putchases-edit-btn btn_modal_update"><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="btn--red btn-remove-equipment remove-pop-up-btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

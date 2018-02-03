@@ -1,0 +1,73 @@
+﻿@model List<SupportAsu.DTO.Task.TaskModel>
+@{
+    ViewBag.Title = "Архів завдань";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    var mainTask = Model.Where(x => x.IsMainTask);
+}
+
+<main class="content content-archive">
+    <div class="archive-task">
+        <div class="claim-item claim-list-header">
+            <div class="claim-theme"><span>Назва</span></div>
+            <div class="claim-date"><span>Дата початку</span></div>
+            <div class="claim-date"><span>Дата звершення</span></div>
+            <div class="claim-more"><span>Деталі</span></div>
+            <div class="claim-more"><span>Повернути</span></div>
+        </div>
+        <ul class="claims-list">
+            @foreach (var task in mainTask)
+            {
+                <li class="claim-item" id="task@(task.Id)">
+                    <div class="claim-theme"><span>@task.Title</span></div>
+                    <div class="claim-date"><span>@task.DateStart.ToShortDateString()</span></div>
+                    <div class="claim-date"><span>@task.DateEnd.ToShortDateString()</span></div>
+                    <div class="claim-more"><button id="@task.Id" class="btn--blue ar-task-desc">Деталі</button></div>
+                    <div class="claim-more"><button id="@task.Id" class="btn--orange task-turn">Повернути</button></div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</main>
+<div class="modal arcive-description-tasks">
+    <div class="pop-up">
+        <button class="close-modal-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <div class="issue-desctiption-content">
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Назва</span>
+                <span class="issue-desctiption-text">Встановити нове ПО</span>
+            </div>
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Категорія</span>
+                <span class="issue-desctiption-text">Встановлення ПО </span>
+            </div>
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Аудиторія</span>
+                <span class="issue-desctiption-text">416</span>
+            </div>
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Опис</span>
+                <span class="issue-desctiption-text">Встановити gpss на всі комп'ютери аудиторії</span>
+            </div>
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Дата</span>
+                <span class="issue-desctiption-text">30.05</span>
+                <span class="issue-desctiption-text">18.06</span>
+            </div>
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Відповідальний</span>
+                <span class="issue-desctiption-text">Опришко Андрій</span>
+            </div>
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Виконавці</span>
+                <span class="issue-desctiption-text">Довгаль Дмитро</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Custom/dashboard.js"></script>
+<script>
+    var isFormExists = false;
+    var changetatusUrl = '@Url.Action("ChangeStatus","Task")';
+    var viewUrl = '@Url.Action("View","Task")';
+</script>

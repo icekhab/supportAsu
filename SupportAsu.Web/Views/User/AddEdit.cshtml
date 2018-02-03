@@ -1,0 +1,35 @@
+﻿@model SupportAsu.DTO.User.UserModel
+@{
+    var formId = (bool)ViewBag.IsCreate ? "create_user_form" : "edit_user_form";
+}
+<form id="@formId" class="user_form" data-isValid="@((bool)ViewBag.IsCreate)">
+    <div class="input-field" id="login_block">
+        <span class="input-lable">Логін</span>
+        @Html.TextBoxFor(x => x.Login, new { @class = "sa-input login_v" })
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+    <div class="input-field">
+        <span class="input-lable">І'мя</span>
+        @Html.TextBoxFor(x => x.Name, new { @class = "sa-input" })
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    <div class="input-field">
+        <span class="input-lable">Прізвище</span>
+        @Html.TextBoxFor(x => x.SurName, new { @class = "sa-input" })
+        @Html.ValidationMessageFor(x => x.SurName)
+    </div>
+    <div class="input-field">
+        <span class="input-lable">Електронна пошта</span>
+        @Html.TextBoxFor(x => x.Email, new { @class = "sa-input" })
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="input-field">
+        <span class="input-lable">Телефон</span>
+        @Html.TextBoxFor(x => x.Phone, new { @class = "sa-input" })
+        @Html.ValidationMessageFor(x => x.Phone)
+    </div>
+    <button class='btn--green'>Зберегти</button>
+</form>
+<script>
+    var isCreate = '@((bool)ViewBag.IsCreate)';
+</script>

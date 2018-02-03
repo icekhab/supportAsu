@@ -1,0 +1,21 @@
+﻿@model List<SupportAsu.DTO.User.UserModel>
+
+<div class="claim-item claim-list-header">
+    <div class="claim-date"><span>Логін</span></div>
+    <div class="claim-theme"><span>І'мя</span></div>
+    <div class="claim-email"><span>Електронна пошта</span></div>
+    <div class="claim-theme"><span>Телефон</span></div>
+    <div class="claim-date"></div>
+</div>
+<ul class="claims-list">
+    @foreach (var user in Model)
+    {
+        <li class="claim-item"  data-src="@Url.Action("Delete","User")" data-id="@user.Login">
+            <div class="claim-date"><span>@user.Login</span></div>
+            <div class="claim-theme"><span>@user.DisplayName</span></div>
+            <div class="claim-email"><span>@user.Email</span></div>
+            <div class="claim-theme"><span>@user.Phone</span></div>
+            <div class="claim-date"><button data-id="@user.Login"class="btn--orange single-users-edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="btn--red btn-remove-equipment remove-pop-up-btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+        </li>
+    }
+</ul>

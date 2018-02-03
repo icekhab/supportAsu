@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Список планів закупівлі";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<main class="content content-putchases">
+				
+    <div class="filters">
+        <div class="fix-content-putchases">
+            <button class="btn--green btn-new-putchases">Додати</button>
+            <h2>Фільтрувати</h2>
+            <div id="filter_putchases" class="filter-form">
+                <div class="input-field">
+                    <span class="input-lable">Назва</span>
+                    <input id="filter_name" type="text" class="sa-input" value="@ViewBag.Name">
+                </div>
+                <div class="input-field">
+                    <span class="input-lable">Дата з</span>
+                    @Html.TextBox("filter_from", (string)ViewBag.From, new { id= "filter_from", @class= "sa-input", type="date" })
+                    @*<input id="filter_from" type="date" class="sa-input" value="@ViewBag.From">*@
+                </div>
+                <div class="input-field">
+                    <span class="input-lable">до</span>
+                    @Html.TextBox("filter_to", (string)ViewBag.To, new { id = "filter_to", @class = "sa-input", type = "date" })
+                    @*<input id="filter_to" type="date" class="sa-input" value="@ViewBag.To">*@
+                </div>
+                <button class='btn--orange'>Застосувати</button>
+            </div>
+        </div>
+    </div>
+    <div id="putchases_table" class="putchases">
+        @Html.Action("PlanTableList","PlanPurchase", new { page = ViewBag.Page, filter = ViewBag.Filter })
+    </div>
+    
+    <div class="modal modal-add-putchas">
+
+        <div class="pop-up">
+            <button class="close-modal-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+            @Html.Action("Create", "PlanPurchase")
+        </div>
+    </div>
+
+</main>
+
+<script src="~/Scripts/Custom/Equipments/newPutchases.js"></script>

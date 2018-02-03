@@ -1,0 +1,64 @@
+﻿@*@model PagedList.StaticPagedList<SupportAsu.DTO.Equipments.EquipmentDto>*@
+
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Список обладнання";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<main class="content content-equipment-list">
+    <a href="@Url.Action("Create","Equipment")" class="btn--orange btn-new-equipment">Додати</a>
+    <div class="filters">
+        <button class='btn--green open-filters-btn'>Показати фільтри</button>
+        <div class="filter-section close">
+            <div class="filter-form">
+                <div class="filter-info">
+                    <div class="filter-block">
+                        <div class="input-field">
+                            <span class="input-lable">Інвентарний номер</span>
+                            <input id="equipment_number" type="text" class="sa-input" value="@ViewBag.Number">
+                        </div>
+                    </div>
+                    <div class="filter-block">
+                        <div class="input-field sa-select-chekbox">
+                            <span class="input-lable">Аудиторія</span>
+                            <ul id="equipment_auditories" class="checkbox-list">
+                                @foreach (var item in ViewBag.Auditories as SelectList)
+                                {
+                                    var isCheck = ViewBag.AuditoriesSelect != null && ViewBag.AuditoriesSelect.Contains(int.Parse(item.Value)) ? "true" : "false";
+                                    var checkedString = isCheck == "true" ? "checked" : ""; 
+                                    <li>
+                                        <div class="ckeckbox-form">
+                                            <span class="sa-checkbox @isCheck" data-checked="@isCheck" data-val="@item.Value"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                            <input type="checkbox" @checkedString>
+                                            <span class="sa-label">@item.Text</span>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button id="filter_equipments" type="button" class='btn--orange'>Застосувати</button>
+            </div>
+        </div>
+    </div>
+    <div class="equipment-list">
+        <div class="claim-item claim-list-header">
+            <div class="claim-theme"><span>Назва</span></div>
+            <div class="claim-more"><span>Інвентарний номер</span></div>
+            <div class="claim-date"><span>Аудиторія</span></div>
+            <div class="claim-date"><span>Стан</span></div>
+            <div class="eq-note"><span>Примітка</span></div>
+            <div class="claim-date"></div>
+        </div>
+        <div id="equipments-list-table">
+            @Html.Action("GetList", "Equipment", new { page = ViewBag.Page, filter = ViewBag.Filter })
+        </div>
+    </div>
+</main>
+<script src="~/Scripts/Custom/Equipments/filterEquipment.js"></script>
+
+

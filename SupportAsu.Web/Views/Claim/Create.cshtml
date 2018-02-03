@@ -1,0 +1,42 @@
+﻿    @model SupportAsu.Model.Claim
+    @using SupportAsu.Helpers;
+@using SupportAsu.Web.Helpers;
+@{
+    ViewBag.Title = "Створення заявки";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+    <main class="content create-claim-content">
+        <div class="sa-block">
+            @using (Html.BeginForm("Create","Claim",FormMethod.Post,new { @id= "new-claim" }))
+            {
+                <div class="input-field">
+                    <span class="input-lable">Тема</span>
+                    @Html.TextBoxFor(x=>x.Title,new {@class="sa-input" })
+                    <span class="required-field">*</span>
+                    @Html.ValidationMessageFor(x=>x.Title,null,new { @class = "help-error" })
+                </div>
+                <div class="input-field sa-select">
+                    <span class="input-lable">Категорія</span>
+                    @Html.HiddenFor(x => x.CategoryId,new { @class="sa-hidden-input"})
+                    <input type="text" class="sa-input"  readonly>
+                    <span class="required-field">*</span>
+                    @Html.CreateList(ViewBag.Category as SelectList)                  
+                    @Html.ValidationMessageFor(x => x.CategoryId, null, new { @class = "help-error" })
+                </div>
+                <div class="input-field sa-select">
+                    <span class="input-lable">Аудиторія</span>
+                    @Html.HiddenFor(x => x.AuditoryId, new { @class = "sa-hidden-input" })
+                    <input type="text" class="sa-input" readonly>
+                    @Html.CreateList(ViewBag.Auditory as SelectList)
+                    @Html.ValidationMessageFor(x => x.AuditoryId, null, new { @class = "help-error" })
+                </div>
+                <div class="input-field sa-textarea">
+                    <span class="input-lable">Опис проблеми</span>
+                    @Html.TextAreaFor(x=>x.Text,new {@class="sa-input" })
+                    <span class="required-field">*</span>
+                    @Html.ValidationMessageFor(x => x.Text, null, new { @class = "help-error" })
+                </div>
+                <button type="submit" class="btn--green">Створити</button>
+            }
+        </div>
+    </main>

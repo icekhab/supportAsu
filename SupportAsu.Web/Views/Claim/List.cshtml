@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Заявки";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<main class="content content-claims-list">
+    <input type="hidden" id="isAll" value="@ViewBag.isAll">
+    @if ((bool)ViewBag.isShowFilter)
+    {
+    <div class="filters">
+        <button class='btn--green open-filters-btn'>Показати фільтри</button>
+        <div class="filter-section close">
+            <div class="filter-form">
+                <div class="filter-info">
+                    <div class="filter-block">
+                        <div class="input-field">
+                            <span class="input-lable">Дата з</span>
+                            <input type="date" id="datestart" class="sa-input">
+                        </div>
+                        <div class="input-field">
+                            <span class="input-lable">до</span>
+                            <input type="date" id="dateend" class="sa-input">
+                        </div>
+
+                    </div>
+                    <div class="filter-block">
+                        <div class="input-field">
+                            <span class="input-lable">Автор</span>
+                            <input type="text" id="author" class="sa-input">
+                        </div>
+                    </div>
+                    <div class="filter-block">
+                        <div class="input-field sa-select-chekbox">
+                            <span class="input-lable">Статус</span>
+                            <ul class="checkbox-list" id="status_list">
+                                @foreach (var item in ViewBag.Statuses as SelectList)
+                                {
+                                <li>
+                                    <div class="ckeckbox-form">
+                                        <span class="sa-checkbox false" data-checked="false" data-val="@item.Value"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                        <input type="checkbox">
+                                        <span class="sa-label">@item.Text</span>
+                                    </div>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button class='btn--orange' onclick="ApplyFilter()">Застосувати</button>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="claim-item claim-list-header sortable">
+        <div class="claim-theme"><span class="sortable-column" name="Title">Тема</span></div>
+        <div class="claim-category"><span class="sortable-column" name="Category">Категорія</span></div>
+        <div><span class="sortable-column" name ="Author">Автор</span></div>
+        <div class="claim-date"><span class="active-sort sort-desc sortable-column" order="desc" name="Date"> Дата подання</span></div>
+        <div class="claim-status"><span class="sortable-column" name="Status.Value">Статус</span></div>
+        <div class="claim-more"><span>Деталі</span></div>
+    </div>
+
+    <div id="claims">
+        @Html.Action("GetClaims", "Claim",new { Column="Date",Order="Desc"})
+    </div>
+</main>
+<script src="~/Scripts/Custom/Sorting.js"></script>
+<script>
+    var getClaimsUrl = '@Url.Action("GetClaims", "Claim")';
+</script>
+<script src="~/Scripts/Custom/Claim/List.js"></script>

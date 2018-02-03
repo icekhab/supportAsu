@@ -1,0 +1,84 @@
+﻿@model SupportAsu.DTO.Task.TaskModel
+
+<button class="close-modal-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+<div id="task_info">
+    <div class="issue-desctiption-content">
+        <div class="mobile-content">
+            <div class="mob-chanche-status">
+                <h3>Змінити статус завдання</h3>
+                <div class="input-field sa-select">
+                    <span class="input-lable">Статус</span>
+                    <input type="text" class="sa-input" placeholder="Статус" readonly>
+                    <span class="required-field">*</span>
+                    <ul class="sa-list">
+                        <li onclick="ChangeTaskStatus('New')">Нове</li>
+                        <li onclick="ChangeTaskStatus('InProgress')">В роботі</li>
+                        <li onclick="ChangeTaskStatus('Check')">Перевірити</li>
+                        @if (User.IsInRole(SupportAsu.DTO.Roles.Role.Administrator))
+                        {
+                            <li onclick="ChangeTaskStatus('Done')">Виконано</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="issue-desctiption-block">
+            <span class="issue-desctiption-name">Назва</span>
+            <span class="issue-desctiption-text">@Model.Title</span>
+        </div>
+        @if (Model.Auditory != null)
+        {
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Аудиторія</span>
+                <span class="issue-desctiption-text">@Model.Auditory.Value</span>
+            </div>
+        }
+        <div class="issue-desctiption-block">
+            <span class="issue-desctiption-name">Опис</span>
+            <span class="issue-desctiption-text">@Model.Text </span>
+        </div>
+        <div class="issue-desctiption-block">
+            <span class="issue-desctiption-name">Дата</span>
+            <span class="issue-desctiption-text">@($"{Model.DateStart.ToString("dd.MM")}-{Model.DateEnd.ToString("dd.MM")}")</span>
+        </div>
+        <div class="issue-desctiption-block">
+            <span class="issue-desctiption-name">Відповідальний</span>
+            <span class="issue-desctiption-text">@Model.Resposible.Name</span>
+        </div>
+        <div class="issue-desctiption-block">
+            <span class="issue-desctiption-name">Виконавці</span>
+            @foreach (var user in Model.Executors)
+            {
+                <span class="issue-desctiption-text">@user.Name</span>
+            }
+        </div>
+        @if (Model.Claims != null && Model.Claims.Count != 0)
+        {
+            <div class="issue-desctiption-block">
+                <span class="issue-desctiption-name">Заявки</span>
+                @foreach (var claim in Model.Claims)
+                {
+                    <span class="issue-desctiption-text">@claim.Title</span>
+                }
+            </div>
+        }
+    </div>
+    @if (User.IsInRole(SupportAsu.DTO.Roles.Role.Administrator) && (bool)ViewBag.IsEdit)
+    {
+        <a href="@Url.Action("Edit", "Task", new { id = Model.Id })" class="btn--green">Редагувати</a>
+    }
+</div>
+<script>
+    function ChangeTaskStatus(status)
+    {
+        ChangeStatus('@Model.Id', status);
+        var task = $('div #@Model.Id');
+        var remember = $(task).html();
+        var column = $('div.dashboard-block[status=' + status + ']').find('.help-dropp');
+        $(task).remove();
+        $(column).append(`<div id="@Model.Id" class=" dashboard-issue ui-draggable" ></div>`);
+        $('#@Model.Id').html(remember);
+    }
+</script>

@@ -1,0 +1,22 @@
+﻿@model SupportAsu.DTO.User.UserModel
+@{
+    ViewBag.Title = "Профіль";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewBag.IsCreate = false;
+}
+<div class="profile-edit sa-block">
+    <h2>Редагувати профіль</h2>
+    @Html.Partial("AddEdit", Model)
+</div>
+<div class="change-password sa-block">
+    <h2>Змінити пароль</h2>
+    @Html.Partial("ChangePassword", new SupportAsu.DTO.User.ChangePasswordModel { Login = User.Identity.Name })
+</div>
+<script src="~/Scripts/Custom/User/AddEdit.js"></script>
+<script>
+    var isProfile = true;
+    var addeditUrl = '@Url.Action("AddEdit","User")';
+    $(function () {
+        $('#login_block').hide();
+    })
+</script>

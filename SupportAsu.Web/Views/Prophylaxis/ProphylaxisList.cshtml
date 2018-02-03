@@ -1,0 +1,22 @@
+﻿@model List<SupportAsu.DTO.Prophylaxis.ProphylaxisModel>
+<div class="claim-item claim-list-header">
+    <div class="claim-theme"><span>Аудиторія</span></div>
+    <div class="claim-theme"><span>День</span></div>
+    <div class="claim-theme"><span>Пара</span></div>
+    <div class="claim-theme"><span>Відповідальний</span></div>
+    <div class="claim-theme"></div>
+</div>
+<ul class="claims-list">
+    @foreach (var item in Model)
+    {
+        <li class="claim-item" data-src="@Url.Action("Delete","Prophylaxis")" data-id="@item.Id">
+            <div class="claim-theme"><span>@item.Auditory</span></div>
+            <div class="claim-theme"><span>@item.Day</span></div>
+            <div class="claim-theme"><span>@item.Lesson</span></div>
+            <div class="claim-theme"><span>@item.Responsible</span></div>
+            <div class="claim-theme">
+            <button data-id="@item.Id" class="btn--orange prophylaxis-edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button  class="btn--red btn-remove-equipment remove-pop-up-btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+        </li>
+    }
+</ul>

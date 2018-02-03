@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Розклад проектора";
+    Layout = "/Views/Shared/_LayoutUser.cshtml";
+}
+
+<main class="content content-projector">
+    <div class="new-user-add">
+        <h2>Додати пару</h2>
+        @Html.Action("CreateOrUpdate", "ProjectorShedule", new { isCreate = true })
+    </div>
+
+    @Html.Action("GetProjectorSheduleTableList","ProjectorShedule")
+    
+    
+
+</main>
+<div class="modal modal-edit-projector">
+    <div class="pop-up">
+        <button class="close-modal-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+        @Html.Action("CreateOrUpdate", "ProjectorShedule", new { isCreate = false })
+    </div>
+</div>
+
+<script src="~/Scripts/Custom/ProjectorShedules/projectorShedules.js"></script>

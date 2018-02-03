@@ -1,0 +1,304 @@
+﻿@model List<SupportAsu.DTO.Task.TaskModel>
+@{
+    ViewBag.Title = "Дошка завдань";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    var mainTask = Model.Where(x => x.IsMainTask);
+}
+
+
+<main class="content content-dashboard">
+    @*<div class="filters">
+            <button class='btn--green open-filters-btn'>Показати фільтри</button>
+            <div class="filter-section close">
+                <form action="" class="filter-form">
+                    <div class="filter-info">
+                        <div class="filter-block">
+                            <a href="" class="btn--blue">Тільки мої</a>
+                            <div class="input-field">
+                                <span class="input-lable">Виконавець</span>
+                                <input type="text" class="sa-input">
+                            </div>
+                            <div class="input-field">
+                                <span class="input-lable">Дата з</span>
+                                <input type="date" class="sa-input">
+                            </div>
+                            <div class="input-field">
+                                <span class="input-lable">до</span>
+                                <input type="date" class="sa-input">
+                            </div>
+
+                        </div>
+                        <div class="filter-block">
+                            <div class="input-field sa-select-chekbox">
+                                <span class="input-lable">Аудиторія</span>
+                                <ul class="checkbox-list">
+                                    <li>
+                                        <div class="ckeckbox-form">
+                                            <span class="sa-checkbox false" data-checked="false"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                            <input type="checkbox">
+                                            <span class="sa-label">323</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="ckeckbox-form">
+                                            <span class="sa-checkbox false" data-checked="false"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                            <input type="checkbox">
+                                            <span class="sa-label">416</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="ckeckbox-form">
+                                            <span class="sa-checkbox false" data-checked="false"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                            <input type="checkbox">
+                                            <span class="sa-label">417</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="ckeckbox-form">
+                                            <span class="sa-checkbox false" data-checked="false"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                            <input type="checkbox">
+                                            <span class="sa-label">430</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="ckeckbox-form">
+                                            <span class="sa-checkbox false" data-checked="false"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                            <input type="checkbox">
+                                            <span class="sa-label">426</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <button class='btn--orange'>Застосувати</button>
+                </form>
+            </div>
+        </div>*@
+    <div class="main-dashboard">
+        <div id="dashboard0" class="dashboard">
+            <div class="dashboard-block" status="New">
+                <h2 class="dashboard-status">
+                    Нове
+                    <span class="mobile-content mobile-arrow-dash">
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                </h2>
+                <div class="issue-content droppable ui-droppable">
+                    <div class="help-dropp">
+                        @foreach (var task in mainTask.Where(x => x.Status.Code == "New"))
+                        {
+                            <div id="@task.Id" class="dashboard-issue ui-draggable">
+                                <span class="issue-theme">@task.Title</span>
+                                <span class="issue-performer issue-responsible">@task.Resposible.Name</span>
+                                @foreach (var user in task.Executors)
+                                {
+                                    <span class="issue-performer">@user.Name</span>
+                                }
+                                <span class="issue-date">@($"{task.DateStart.ToString("dd.MM")}-{task.DateEnd.ToString("dd.MM")}")</span>
+                                <a onclick="ChangeStatus('@task.Id','Archive')" style="display:none" class="btn--red to-archive">В архів</a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-block" status="InProgress">
+                <h2 class="dashboard-status">
+                    В роботі
+                    <span class="mobile-content mobile-arrow-dash">
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                </h2>
+                <div class="issue-content droppable ui-droppable ">
+                    <div class="help-dropp">
+                        @foreach (var task in mainTask.Where(x => x.Status.Code == "InProgress"))
+                        {
+                            <div id="@task.Id" class="dashboard-issue ui-draggable">
+                                <span class="issue-theme">@task.Title</span>
+
+                                <span class="issue-performer issue-responsible">@task.Resposible.Name</span>
+                                @foreach (var user in task.Executors)
+                                {
+                                    <span class="issue-performer">@user.Name</span>
+                                }
+                                <span class="issue-date">@($"{task.DateStart.ToString("dd.MM")}-{task.DateEnd.ToString("dd.MM")}")</span>
+                                <a onclick="ChangeStatus('@task.Id','Archive')" style="display:none" class="btn--red to-archive">В архів</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-block" status="Check">
+                <h2 class="dashboard-status">
+                    Перевірити
+                    <span class="mobile-content mobile-arrow-dash">
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                </h2>
+                <div class="issue-content droppable ui-droppable ">
+                    <div class="help-dropp">
+                        @foreach (var task in mainTask.Where(x => x.Status.Code == "Check"))
+                        {
+                            <div id="@task.Id" class="dashboard-issue ui-draggable">
+                                <span class="issue-theme">@task.Title</span>
+
+                                <span class="issue-performer issue-responsible">@task.Resposible.Name</span>
+                                @foreach (var user in task.Executors)
+                                {
+                                    <span class="issue-performer">@user.Name</span>
+                                }
+                                <span class="issue-date">@($"{task.DateStart.ToString("dd.MM")}-{task.DateEnd.ToString("dd.MM")}")</span>
+                                <a onclick="ChangeStatus('@task.Id','Archive')" style="display:none" class="btn--red to-archive">В архів</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            @if (User.IsInRole(SupportAsu.DTO.Roles.Role.Administrator))
+            {
+                <div class="dashboard-block" status="Done">
+                    <h2 class="dashboard-status">
+                        Виконано
+                        <span class="mobile-content mobile-arrow-dash">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </h2>
+                    <div class="issue-content droppable ui-droppable ">
+                        <div class="help-dropp">
+                            @foreach (var task in mainTask.Where(x => x.Status.Code == "Done"))
+                            {
+                                <div id="@task.Id" class="dashboard-issue ui-draggable">
+                                    <span class="issue-theme">@task.Title</span>
+
+                                    <span class="issue-performer issue-responsible">@task.Resposible.Name</span>
+                                    @foreach (var user in task.Executors)
+                                    {
+                                        <span class="issue-performer">@user.Name</span>
+                                    }
+                                    <span style="display:none;" class="issue-date">@($"{task.DateStart.ToString("dd.MM")}-{task.DateEnd.ToString("dd.MM")}")</span>
+                                    <a onclick="ChangeStatus('@task.Id','Archive')" class="btn--red to-archive">В архів</a>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+    <script>
+        $(function () {
+            var tasks = @Html.Raw(Json.Encode(mainTask.Select(x => x.Id)));
+            for (i = 0; i < tasks.length; i++) {
+                init(tasks[i],'dashboard0');
+            }
+
+        })
+    </script>
+    @*<div class="main-dashboard">
+            <div class="dashboard-block no-dropp-row">
+                <h2 class="dashboard-status">
+                    Задача
+                </h2>
+                <div class="issue-content">
+                    <div id="4" class="dashboard-issue">
+                        <span class="issue-theme">Theme</span>
+                        <span class="issue-performer">Name Surname</span>
+                        <span class="issue-performer">Name Surname</span>
+                        <span class="issue-date">30.05</span>
+                    </div>
+                </div>
+            </div>
+            <div id="dashboard" class="dashboard">
+                <div class="dashboard-block">
+                    <h2 class="dashboard-status">
+                        До Виконання
+                        <span class="mobile-content mobile-arrow-dash">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </h2>
+                    <div class="issue-content droppable ui-droppable">
+                        <div class="help-dropp">
+                            <div id="1" class="dashboard-issue ui-draggable">
+                                <span class="issue-theme">Theme</span>
+                                <span class="issue-performer">Name Surname</span>
+                                <span class="issue-performer">Name Surname</span>
+                            </div>
+                            <div id="6" class="dashboard-issue ui-draggable">
+                                <span class="issue-theme">Theme</span>
+                                <span class="issue-performer">Name Surname</span>
+                                <span class="issue-performer">Name Surname</span>
+                                <span class="issue-date">30.05</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-block">
+                    <h2 class="dashboard-status">
+                        В роботі
+                        <span class="mobile-content mobile-arrow-dash">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </h2>
+                    <div class="issue-content droppable ui-droppable ">
+                        <div class="help-dropp">
+                            <div id="2" class="dashboard-issue ui-draggable">
+                                <span class="issue-theme">Theme</span>
+                                <span class="issue-performer">Name Surname</span>
+                                <span class="issue-performer">Name Surname</span>
+                                <span class="issue-date">30.05</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-block">
+                    <h2 class="dashboard-status">
+                        Перевірити
+                        <span class="mobile-content mobile-arrow-dash">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </h2>
+                    <div class="issue-content droppable ui-droppable ">
+                        <div class="help-dropp">
+                            <div id="3" class="dashboard-issue ui-draggable">
+                                <span class="issue-theme">Theme</span>
+                                <span class="issue-performer">Name Surname</span>
+                                <span class="issue-performer">Name Surname</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-block">
+                    <h2 class="dashboard-status">
+                        Виконано
+                        <span class="mobile-content mobile-arrow-dash">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </h2>
+                    <div class="issue-content droppable ui-droppable ">
+                        <div class="help-dropp">
+                            <div id="5" class="dashboard-issue ui-draggable">
+                                <span class="issue-theme">Theme</span>
+                                <span class="issue-performer">Name Surname</span>
+                                <span class="issue-performer">Name Surname</span>
+                                <a href="" class="btn--red to-archive">В архів</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <script src="~/Scripts/Custom/dashboard.js"></script>
+    <div class="modal task-description-modal ">
+
+    </div>
+</main>
+
+<script>
+    var isFormExists = false;
+    var changetatusUrl = '@Url.Action("ChangeStatus","Task")';
+    var viewUrl='@Url.Action("View","Task")';
+</script>

@@ -1,0 +1,36 @@
+﻿@using PagedList.Mvc
+@model PagedList.StaticPagedList<SupportAsu.Model.Purchase>
+@{
+    ViewBag.Title = "PlanTableList";
+    Layout = null;
+}
+
+<div class="claim-item claim-list-header">
+    <div class="claim-theme"><span>Назва</span></div>
+    <div class="claim-date"><span>Дата</span></div>
+    <div class="eq-note"><span>Примітка</span></div>
+    <div class="claim-theme"></div>
+</div>
+<ul class="claims-list">
+    @foreach (var purchase in Model)
+    {
+        <li class="claim-item" data-src="@Url.Action("Delete","PlanPurchase")" data-id="@purchase.Id">
+            <div class="claim-theme"><span>@purchase.Name</span></div>
+
+            <div class="claim-date"><span>@purchase.Date.ToShortDateString()</span></div>
+
+            <div class="eq-note"><span>@purchase.Note</span></div>
+
+            <div class="claim-theme"><a href="@Url.Action("GetPlan","PlanPurchase", new { id = purchase.Id })" class="btn--orange putchases-edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i></a><button class="btn--red btn-remove-equipment remove-pop-up-btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </div>
+        </li>
+    }
+</ul>
+
+@if (Model.PageCount > 1)
+{
+    <div id="planpurchase_pager" class="claim-pager">
+        @Html.PagedListPager(Model, x => "#")
+    </div>
+    <input type="hidden" id="number_pages" value="@Model.PageCount" />
+}
