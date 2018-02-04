@@ -1,0 +1,5 @@
+D:\Projects\Diplom\SupportAsu.DTO\bin\Debug\SupportAsu.DTO.dll
+D:\Projects\Diplom\SupportAsu.DTO\bin\Debug\SupportAsu.DTO.pdb
+D:\Projects\Diplom\SupportAsu.DTO\obj\Debug\SupportAsu.DTO.csproj.CoreCompileInputs.cache
+D:\Projects\Diplom\SupportAsu.DTO\obj\Debug\SupportAsu.DTO.dll
+D:\Projects\Diplom\SupportAsu.DTO\obj\Debug\SupportAsu.DTO.pdb

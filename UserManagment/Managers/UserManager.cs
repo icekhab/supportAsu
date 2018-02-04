@@ -19,23 +19,16 @@ namespace UserManagment.Managers
             _domainManager = domainManager;
         }
 
+        public User GetUser(string username, string password)
+        {
+            return _repository.TableNoTracking<User>().SingleOrDefault(x => x.Login == username && x.Password == password);
+        }
+
         public User GetUser(string username)
         {
-            var adUser = _domainManager.GetUser(username);
-            var roles = _domainManager.GetRolesForUser(username);
-            User user = IndentifyUser(roles);
-            user.Email = adUser.EmailAddress;
-            user.IsEnabled = adUser.Enabled.Value;
-            user.Login = username;
-            user.Phone = adUser.VoiceTelephoneNumber;
-            user.Name = adUser.DisplayName;
-
-            #region InsertOrUpdateInDB
-            InsertOrUpdateUser(user);
-            #endregion
-
-            return user;
+            return _repository.TableNoTracking<User>().SingleOrDefault(x => x.Login == username);
         }
+
         public UserModel GetUserModal(string login)
         {
             var user = _domainManager.GetUser(login);
@@ -146,7 +139,7 @@ namespace UserManagment.Managers
                     Login = user.Login
                 };
             }
-            _repository.InsertOrUpdate(dbUser);
+            //_repository.InsertOrUpdate(dbUser);
             user.Id = dbUser.Id;
         }
 
@@ -160,7 +153,7 @@ namespace UserManagment.Managers
             var deletedUsers = _repository.TableNoTracking<User>().Where(x => (x.Role == rolename && !users.Contains(x.Login)));
             foreach (var user in deletedUsers)
             {
-                _repository.Delete(user);
+                //_repository.Delete(user);
             }
         }
 

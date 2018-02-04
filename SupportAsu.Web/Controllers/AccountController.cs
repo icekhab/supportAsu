@@ -39,14 +39,14 @@ namespace SupportAsu.Controllers
             if (ModelState.IsValid)
             {
                 string message = string.Empty;
-                if (_userManager.ValidateUser(model.UserName, model.Password, out message))
+                var user = _userManager.GetUser(model.UserName, model.Password);
+                if (user != null)
                 {
-                    var user = _userManager.GetUser(model.UserName);
                     ClaimsIdentity claim = user.GenerateUserIdentity();
                     AuthenticationManager.SignOut();
                     AuthenticationManager.SignIn(new AuthenticationProperties
                     {
-                        IsPersistent = false,
+                        IsPersistent = false                        
                         //ExpiresUtc=DateTime.UtcNow.AddSeconds(10)
                     }, claim);
                     if (Url.IsLocalUrl(ReturnUrl))

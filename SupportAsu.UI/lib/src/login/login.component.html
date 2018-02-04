@@ -1,0 +1,37 @@
+<div class="wrapp">
+    <div class="start-page">
+        <div class="start-logo">
+            <img src="images/big-logo.png" />
+        </div>
+        <div class="login-form">
+            <div class="sa-block login-pop-up">
+                <h2>Вхід в систему</h2>
+                <form [ngFormModel]="loginForm" #f="ngForm" novalidate (ngSubmit)="signIn(f)">
+                    <div class="input-field">
+                        <span class="input-lable">Логін</span>
+                        <input #userName="ngForm" name="userName" [(ngModel)]="model.userName" ngControl="userName" type="text" class="sa-input" placeholder="Введіть логін">
+                        <span class="required-field">*</span>
+                        <span *ngIf="!userName.valid && !userName.pristine" class="help-error">Введите логин</span>
+                    </div>
+                    <div class="input-field">
+                        <span class="input-lable">Пароль</span>
+                        <input #password="ngForm" name="password" [(ngModel)]="model.password" ngControl="password" type="password" class="sa-input" placeholder="Пароль">
+                        <span class="required-field">*</span>
+                        <span *ngIf="!password.valid && !password.pristine" class="help-error">Введите пароль</span>
+                    </div>
+
+                    <button type="submit" class="btn--green">Вхід</button>
+                </form>
+            </div>
+        </div>
+        <div class="start-main">
+            <div class="start-advantages-list">
+                <ul>
+                    <li><img src="images/Account/Login/svg/edit.svg" /><span>Залишайте заявку на обслуговування</span></li>
+                    <li><img src="images/Account/Login/svg/notepad.svg" /><span>Слідкуйте за статусом заявки</span></li>
+                    <li><img src="images/Account/Login/svg/computer.svg" /><span>Додавайте коментарі до заявки</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,7 +14,7 @@ using SupportAsu.DTO.Roles;
 
 namespace SupportAsu.Web.Controllers
 {
-    [Authorize(Roles = Role.Administrator + "," + Role.Intern)]
+    //[Authorize(Roles = Role.Administrator + "," + Role.Intern)]
     public class TaskController : Controller
     {
         private ITaskService _taskService;
@@ -24,6 +24,7 @@ namespace SupportAsu.Web.Controllers
         }
         public ActionResult List()
         {
+            var lol = User.IsInRole("Support Admins");
             var tasks = User.Identity.GetUserInfo().GetTasks();
             return View(tasks);
         }

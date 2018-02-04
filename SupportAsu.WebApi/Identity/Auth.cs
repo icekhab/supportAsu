@@ -32,14 +32,14 @@ namespace SupportAsu.Identity
             try
             {
                 var userManager = (IUserManager)DependencyResolver.Current.GetService(typeof(IUserManager));
-                string messageValidate = string.Empty;
-                if (!userManager.ValidateUser(context.UserName, context.Password, out messageValidate))
+
+                var user = userManager.GetUser(context.UserName, context.Password);
+
+                if (user == null)
                 {
-                    context.SetError("invalid_grant", messageValidate);
+                    context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
-
-                var user = userManager.GetUser(context.UserName);
 
                 //User user = new User
                 //{

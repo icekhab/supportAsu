@@ -7,6 +7,7 @@ namespace UserManagment.Managers
     public interface IUserManager
     {
         bool ValidateUser(string username, string password, out string message);
+        User GetUser(string username, string password);
         User GetUser(string username);
         User IndentifyUser(User user);
 

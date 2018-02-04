@@ -30,7 +30,8 @@ namespace SupportAsu.WebApi
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
-                RefreshTokenProvider = new ApplicationRefreshTokenProvider()
+                RefreshTokenProvider = new ApplicationRefreshTokenProvider(),
+                
             };
 
             app.UseOAuthBearerTokens(OAuthOptions);

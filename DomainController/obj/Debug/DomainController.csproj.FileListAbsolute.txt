@@ -1,0 +1,5 @@
+D:\Projects\Diplom\DomainController\bin\Debug\DomainController.dll
+D:\Projects\Diplom\DomainController\bin\Debug\DomainController.pdb
+D:\Projects\Diplom\DomainController\obj\Debug\DomainController.csproj.CoreCompileInputs.cache
+D:\Projects\Diplom\DomainController\obj\Debug\DomainController.dll
+D:\Projects\Diplom\DomainController\obj\Debug\DomainController.pdb
