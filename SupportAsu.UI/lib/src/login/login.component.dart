@@ -3,6 +3,7 @@ import '../../shared/services/user.service.dart';
 import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
+import 'package:angular_router/angular_router.dart';
 
 @Component(
     selector: 'login',
@@ -19,10 +20,11 @@ import 'package:angular_forms/angular_forms.dart';
     exportAs: 'ngForm')
 class LoginComponent {
   final UserService _userService;
+  final Router _router;
   ControlGroup loginForm;
   Login model = new Login();
 
-  LoginComponent(UserService this._userService, FormBuilder fb) {
+  LoginComponent(this._userService, FormBuilder fb, this._router) {
     print(_userService);
     print(fb);
     initForm(fb);
@@ -37,9 +39,8 @@ class LoginComponent {
 
   Future signIn(NgForm form) async {
     if (form.valid) {
-      var userName = form.value['userName'];
-      var password = form.value['password'];
       await _userService.login(form.value['userName'], form.value['password']);
+      _router.navigateByUrl('/');
     }
   }
 }

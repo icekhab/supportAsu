@@ -65,7 +65,7 @@ namespace SupportAsu.Identity
 
                 var cookiesIdentity = user.GenerateClaimsIdentityApplicationCookie();
 
-                var co = new CookieOptions { HttpOnly = true, Expires = DateTime.UtcNow.AddDays(90) };
+                var co = new CookieOptions { HttpOnly = true, Expires = DateTime.Now.AddDays(90) };
 
                 if (HttpContext.Current != null && HttpContext.Current.Request.IsSecureConnection)
                 {

@@ -68,19 +68,20 @@ class SourceVisitor extends ThrowingAstVisitor {
   /// in unison.
   final List<MetadataRule> _metadataRules = [];
 
-  /// The mapping for blocks that are managed by the argument list that contains
-  /// them.
+  /// The mapping for collection literals that are managed by the argument
+  /// list that contains them.
   ///
-  /// When a block expression, such as a collection literal or a multiline
-  /// string, appears inside an [ArgumentSublist], the argument list provides a
-  /// rule for the body to split to ensure that all blocks split in unison. It
-  /// also tracks the chunk before the argument that determines whether or not
-  /// the block body is indented like an expression or a statement.
+  /// When a collection literal appears inside an [ArgumentSublist], the
+  /// argument list provides a rule for the body to split to ensure that all
+  /// collections split in unison. It also tracks the chunk before the
+  /// argument that determines whether or not the collection body is indented
+  /// like an expression or a statement.
   ///
-  /// Before a block argument is visited, [ArgumentSublist] binds itself to the
-  /// beginning token of each block it controls. When we later visit that
-  /// literal, we use the token to find that association.
-  final Map<Token, ArgumentSublist> _blockArgumentLists = {};
+  /// Before a collection literal argument is visited, [ArgumentSublist] binds
+  /// itself to the left bracket token of each collection literal it controls.
+  /// When we later visit that literal, we use the token to find that
+  /// association.
+  final Map<Token, ArgumentSublist> _collectionArgumentLists = {};
 
   /// Initialize a newly created visitor to write source code representing
   /// the visited nodes to the given [writer].
@@ -170,17 +171,22 @@ class SourceVisitor extends ThrowingAstVisitor {
     builder.endSpan();
   }
 
-  visitAssertInitializer(AssertInitializer node) {
-    token(node.assertKeyword);
+  // TODO(rnystrom): Type annotate once analyzer publishes a version with the
+  // new AST type.
+  // TODO(rnystrom): Test.
+  visitAssertInitializer(node) {
+    _simpleStatement(node, () {
+      token(node.assertKeyword);
 
-    var arguments = <Expression>[node.condition];
-    if (node.message != null) arguments.add(node.message);
+      var arguments = <Expression>[node.condition];
+      if (node.message != null) arguments.add(node.message);
 
-    builder.nestExpression();
-    var visitor = new ArgumentListVisitor.forArguments(
-        this, node.leftParenthesis, node.rightParenthesis, arguments);
-    visitor.visit();
-    builder.unnest();
+      builder.nestExpression();
+      var visitor = new ArgumentListVisitor.forArguments(
+          this, node.leftParenthesis, node.rightParenthesis, arguments);
+      visitor.visit();
+      builder.unnest();
+    });
   }
 
   visitAssertStatement(AssertStatement node) {
@@ -1184,28 +1190,21 @@ class SourceVisitor extends ThrowingAstVisitor {
   }
 
   visitGenericFunctionType(GenericFunctionType node) {
-    builder.startLazyRule();
-    builder.nestExpression();
-
-    visit(node.returnType, after: split);
+    visit(node.returnType, after: space);
     token(node.functionKeyword);
-
-    builder.unnest();
-    builder.endRule();
-
     _visitParameterSignature(node.typeParameters, node.parameters);
   }
 
   visitGenericTypeAlias(GenericTypeAlias node) {
     visitNodes(node.metadata, between: newline, after: newline);
     _simpleStatement(node, () {
-      token(node.typedefKeyword);
-      space();
-
       // If the typedef's type parameters split, split after the "=" too,
       // mainly to ensure the function's type parameters and parameters get
       // end up on successive lines with the same indentation.
       builder.startRule();
+
+      token(node.typedefKeyword);
+      space();
 
       visit(node.name);
 
@@ -1517,11 +1516,7 @@ class SourceVisitor extends ThrowingAstVisitor {
       space();
       token(node.ofKeyword);
       space();
-
-      // Part-of may have either a name or a URI. Only one of these will be
-      // non-null. We visit both since visit() ignores null.
       visit(node.libraryName);
-      visit(node.uri);
     });
   }
 
@@ -2385,9 +2380,9 @@ class SourceVisitor extends ThrowingAstVisitor {
     // handle splitting and indenting it. If not, we'll use a default rule.
     var rule;
     var argumentChunk;
-    if (_blockArgumentLists.containsKey(leftBracket)) {
-      var argumentList = _blockArgumentLists[leftBracket];
-      rule = argumentList.blockRule;
+    if (_collectionArgumentLists.containsKey(leftBracket)) {
+      var argumentList = _collectionArgumentLists[leftBracket];
+      rule = argumentList.collectionRule;
       argumentChunk = argumentList.previousSplit;
     }
 
@@ -2469,13 +2464,13 @@ class SourceVisitor extends ThrowingAstVisitor {
     builder.unnest();
   }
 
-  /// Marks the block that starts with [token] as being controlled by
-  /// [argumentList].
+  /// Marks the collection literal that starts with [leftBracket] as being
+  /// controlled by [argumentList].
   ///
-  /// When the block is visited, [argumentList] will determine the
-  /// indentation and splitting rule for the block.
-  void beforeBlock(Token token, ArgumentSublist argumentList) {
-    _blockArgumentLists[token] = argumentList;
+  /// When the collection is visited, [argumentList] will determine the
+  /// indentation and splitting rule for the collection.
+  void beforeCollection(Token leftBracket, ArgumentSublist argumentList) {
+    _collectionArgumentLists[leftBracket] = argumentList;
   }
 
   /// Writes the beginning of a brace-delimited body and handles indenting and
@@ -2646,7 +2641,7 @@ class SourceVisitor extends ThrowingAstVisitor {
         previousLine = commentLine;
       }
 
-      var text = comment.lexeme.trim();
+      var text = comment.toString().trim();
       var linesBefore = commentLine - previousLine;
       var flushLeft = _startColumn(comment) == 1;
 

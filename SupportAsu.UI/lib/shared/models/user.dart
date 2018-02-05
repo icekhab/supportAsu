@@ -1,35 +1,23 @@
+import 'package:dartson/dartson.dart';
+
+@Entity()
 class User {
+  @Property(name:"access_token")
   String accessToken;
+  @Property(name:"token_type")
   String tokenType;
+  @Property(name:"expires_in")
   int expiresIn;
+  @Property(name:"refresh_token")
   String refreshToken;
+  @Property(name:"login")
   String login;
+  @Property(name:"name")
   String name;
+  @Property(name:"role")
   String role;
+  @Property(name:".issued")
   DateTime issued;
+  @Property(name:".expires")
   DateTime expires;
-
-  User.fromApi(Map json) {
-    this.accessToken = json['access_token'];
-    this.tokenType = json['token_type'];
-    this.expiresIn = json['expires_in'];
-    this.refreshToken = json['refresh_token'];
-    this.login = json['login'];
-    this.name = json['name'];
-    this.role = json['role'];
-    this.issued = json['.issued'];
-    this.expires = json['.expires'];
-  }
-
-  User.fromLocalStorage(Map json) {
-    this.accessToken = json['accessToken'];
-    this.tokenType = json['tokenType'];
-    this.expiresIn = json['expiresIn'];
-    this.refreshToken = json['refreshToken'];
-    this.login = json['login'];
-    this.name = json['name'];
-    this.role = json['role'];
-    this.issued = json['issued'];
-    this.expires = json['expires'];
-  }
 }

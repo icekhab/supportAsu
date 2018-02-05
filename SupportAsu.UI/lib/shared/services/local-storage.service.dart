@@ -2,25 +2,42 @@ import '../models/user.dart';
 import 'dart:convert';
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:dartson/dartson.dart';
+import 'package:dartson/type_transformer.dart';
 
 @Injectable()
 class LocalStorageService {
   User user;
   Storage localStorage;
+  Dartson<dynamic> dson;
 
   LocalStorageService() {
-    Storage localStorage = window.localStorage;
+    dson = new Dartson.JSON();
+    dson.addTransformer(new DateTimeParser(), DateTime);
+    localStorage = window.localStorage;
     if (localStorage.containsKey('user')) {
-      user = new User.fromLocalStorage(JSON.decode(localStorage['users']));
+      user = dson.decode(localStorage['user'], new User());
     }
   }
 
-  void setUser(User user) {
-    localStorage['user'] = JSON.encode(user);
-    user = user;
+  void setUser(String newUser) {
+    localStorage['user'] = newUser;
+   user = dson.decode(localStorage['user'], new User());
   }
 
   User getUser() {
     return user;
+  }
+}
+
+class DateTimeParser extends TypeTransformer {
+  DateTime decode(dynamic value) {
+    return value;
+  }
+
+  @override
+  encode(value) {
+    // TODO: implement encode
+    return value.toString();
   }
 }

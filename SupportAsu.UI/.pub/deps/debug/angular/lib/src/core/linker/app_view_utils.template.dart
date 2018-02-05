@@ -48,7 +48,7 @@ void initReflector() {
   _ref9.initReflector();
   _ngRef.registerFactory(
     AppViewUtils,
-    (String p0, SanitizationService p1, EventManager p2) => new AppViewUtils(p0, p1, p2),
+    (p0, SanitizationService p1, EventManager p2) => new AppViewUtils(p0, p1, p2),
   );
   _ngRef.registerDependencies(
     AppViewUtils,

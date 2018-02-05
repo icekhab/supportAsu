@@ -21,8 +21,7 @@ class UserService {
       var response = await _http.post('${_url}/token',
           body: 'userName=${userName}&password=${password}&grant_type=password',
           headers: _headers);
-
-      _localStorageService.setUser(new User.fromApi(_extractData(response)));
+      _localStorageService.setUser(JSON.encode(_extractData(response)));
     } catch (e) {
       throw _handleError(e);
     }
