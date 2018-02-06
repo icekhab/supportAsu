@@ -1,3 +1,4 @@
+import '../../shared/models/filter.dart';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 
@@ -15,6 +16,9 @@ import 'package:angular_forms/angular_forms.dart';
     ],
     exportAs: 'ngForm')
 class ClaimListComponent {
+  Filter filter;
+  int total = 100;
   ClaimListComponent() {
+    filter = new Filter.init(10, 0);
   }
 }

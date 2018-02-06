@@ -1,5 +1,6 @@
 import '../../shared/models/user.dart';
 import '../../shared/services/local-storage.service.dart';
+import '../../shared/static/role.dart';
 import '../claim/claim-list.component.dart';
 import '../task/task-list.component.dart';
 import 'dart:async';
@@ -24,17 +25,19 @@ import 'package:angular_router/angular_router.dart';
     exportAs: 'ngForm')
 @RouteConfig(const [
   const Route(
-      path: '/tasks/...', name: 'TaskList', component: TaskListComponent),
+      path: '/tasks', name: 'Tasks', component: TaskListComponent),
   const Route(
-      path: '/claims/...', name: 'ClaimList', component: ClaimListComponent)
+      path: '/claims', name: 'Claims', component: ClaimListComponent)
 ])
-class MenuComponent implements OnActivate {
+class MenuComponent implements OnActivate{
   final LocalStorageService _localStorageService;
   final Router _router;
   User user;
+  Role role;
 
   MenuComponent(this._localStorageService, this._router) {
-    user = _localStorageService.getUser();
+    user = _localStorageService.getUser();    
+    role = new Role();
   }
 
   void logOff() {}
@@ -43,26 +46,27 @@ class MenuComponent implements OnActivate {
   Future<bool> routerOnActivate(
       ComponentInstruction next, ComponentInstruction prev) {
     var user = _localStorageService.getUser();
-
+    
     if (user == null) {
       _router.navigateByUrl('/login');
       return false as FutureOr<bool>;
     } else {
       String homePage;
       switch (user.role) {
-        case 'Support Admins':
+        case Role.Administrator:
           {
-            homePage = 'taks';
+            homePage = 'Tasks';
             break;
           }
-        case 'Support Interns':
+        case Role.Intern:
           {
-            homePage = 'claims';
+            homePage = 'Claims';
             break;
           }
       }
-      _router.navigateByUrl('/${homePage}');
-      return false as FutureOr<bool>;
+      _router.navigate([homePage]);
+      
+      return true as FutureOr<bool>;
     }
   }
 }

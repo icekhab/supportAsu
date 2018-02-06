@@ -8,22 +8,22 @@
                 <ul [ngSwitch]="user.role">
                     <!-- <li><a href="/Account"><i class="fa fa-address-card-o" aria-hidden="true"></i>Редагувати профіль</a></li> -->
                     
-                    <text *ngSwitchCase="'Domain Users'">
+                    <text *ngSwitchCase="role.user">
                         <li><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Подати зявку</a></li>
                         <li><a ><i class="fa fa-list-ul" aria-hidden="true"></i>Мої заявки</a></li>
                     </text>
 
-                    <text *ngSwitchCase="'Director'">
+                    <text *ngSwitchCase="role.director">
                         <li><a ><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Подати зявку</a></li>
                         <li><a ><i class="fa fa-list-ul" aria-hidden="true"></i>Мої заявки</a></li>
                         <li><a ><i class="fa fa-list-ul" aria-hidden="true"></i>Заявки</a></li>
                         <li><a ><i class="fa fa-desktop" aria-hidden="true"></i>Розклад проектора</a></li>
                     </text>
 
-                    <text *ngSwitchCase="'Support Admins'">
-                        <li><a [routerLink]="['claims']"><i class="fa fa-list-ul" aria-hidden="true"></i>Заявки</a></li>
+                    <text *ngSwitchCase="role.administrator">
+                        <li><a [routerLink]="['Claims']"><i class="fa fa-list-ul" aria-hidden="true"></i>Заявки</a></li>
                         <li><a ><i class="fa fa-magic" aria-hidden="true"></i>Створити завдання</a></li>
-                        <li><a [routerLink]="['tasks']"><i class="fa fa-tasks" aria-hidden="true"></i>Завдання</a></li>
+                        <li><a [routerLink]="['Tasks']"><i class="fa fa-tasks" aria-hidden="true"></i>Завдання</a></li>
                         <li><a ><i class="fa fa-archive" aria-hidden="true"></i>Архів завдань</a></li>
                         <li><a ><i class="fa fa-hdd-o" aria-hidden="true"></i>Обладнання</a></li>
                         <li><a ><i class="fa fa-desktop" aria-hidden="true"></i>Розклад проектора</a></li>
@@ -32,7 +32,7 @@
                         <li><a ><i class="fa fa-user-circle-o" aria-hidden="true"></i>Користувачі</a></li>
                     </text>
 
-                    <text *ngSwitchCase="'Support Interns'">
+                    <text *ngSwitchCase="role.intern">
                         <li><a ><i class="fa fa-tasks" aria-hidden="true"></i>Завдання</a></li>
                         <li><a ><i class="fa fa-hdd-o" aria-hidden="true"></i>Обладнання</a></li>
                         <li><a ><i class="fa fa-desktop" aria-hidden="true"></i>Розклад проектора</a></li>

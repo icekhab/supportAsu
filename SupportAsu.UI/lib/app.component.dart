@@ -25,7 +25,7 @@ import 'src/menu/menu.component.dart';
       FormBuilder
     ])
 @RouteConfig(const [
-  const Route(path: '/home/...', name: 'Menu', component: MenuComponent, useAsDefault: true),
+  const Route(path: '/main/...', name: 'Menu', component: MenuComponent, useAsDefault: true),
   const Route(path: '/login', name: 'Login', component: LoginComponent)
 ])
 class AppComponent {}
