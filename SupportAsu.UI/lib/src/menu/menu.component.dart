@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
+import 'package:support_asu/shared/services/user.service.dart';
 
 @Component(
     selector: 'menu',
@@ -32,15 +33,19 @@ import 'package:angular_router/angular_router.dart';
 class MenuComponent implements OnActivate{
   final LocalStorageService _localStorageService;
   final Router _router;
+  final UserService _userService;
+  
   User user;
   Role role;
 
-  MenuComponent(this._localStorageService, this._router) {
+  MenuComponent(this._localStorageService, this._router, this._userService) {
     user = _localStorageService.getUser();    
     role = new Role();
   }
 
-  void logOff() {}
+  void logOff() {
+    _userService.logOff();
+  }
 
   @override
   Future<bool> routerOnActivate(

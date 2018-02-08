@@ -1,3 +1,4 @@
+import '../../shared/helpers/form.helper.dart';
 import '../../shared/models/login.dart';
 import '../../shared/services/user.service.dart';
 import 'dart:async';
@@ -21,26 +22,33 @@ import 'package:angular_router/angular_router.dart';
 class LoginComponent {
   final UserService _userService;
   final Router _router;
+  final FormBuilder _fb;
   ControlGroup loginForm;
   Login model = new Login();
+  String error;
 
-  LoginComponent(this._userService, FormBuilder fb, this._router) {
+  LoginComponent(this._userService, this._fb, this._router) {
     print(_userService);
-    print(fb);
-    initForm(fb);
+    initForm();
   }
 
-  void initForm(FormBuilder fb) {
-    loginForm = fb.group({
+  void initForm() {
+    loginForm = _fb.group({
       'userName': ['', Validators.required],
       'password': ['', Validators.required],
     });
   }
 
   Future signIn(NgForm form) async {
+    FormHelper.setControlPristine(loginForm);
     if (form.valid) {
-      //await _userService.login(form.value['userName'], form.value['password']);
-      _router.navigateByUrl('/');
+      var result = await _userService.signIn(
+          form.value['userName'], form.value['password']);
+      if (result.isError) {
+        error = result.error;
+        return;
+      }
+      _router.navigate(['Menu']);
     }
   }
 }

@@ -13,7 +13,7 @@
                             placeholder="Введіть логін">
                         <span class="required-field">*</span>
                         <div *ngIf="userName.errors != null">
-                            <span *ngIf="userName.errors['required'] && !userName.pristine" class="help-error">Введите логин</span>
+                            <span *ngIf="userName.errors['required'] && userName.touched" class="help-error">Введите логин</span>
                         </div>
                     </div>
                     <div class="input-field">
@@ -22,10 +22,10 @@
                             placeholder="Пароль">
                         <span class="required-field">*</span>
                         <div *ngIf="password.errors != null">
-                            <span *ngIf="password.errors['required'] && !password.pristine" class="help-error">Введите пароль</span>
+                            <span *ngIf="password.errors['required'] && password.touched" class="help-error">Введите пароль</span>
                         </div>
                     </div>
-
+                    <span class="help-error">{{error}}</span>
                     <button type="submit" class="btn--green">Вхід</button>
                 </form>
             </div>

@@ -1,5 +1,4 @@
 import '../models/user.dart';
-import '../static/role.dart';
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:dartson/dartson.dart';
@@ -20,15 +19,18 @@ class LocalStorageService {
     }
   }
 
-  void setUser(String newUser) {
+  User setUser(String newUser) {
     localStorage['user'] = newUser;
-   user = dson.decode(localStorage['user'], new User());
+    user = dson.decode(localStorage['user'], new User());
+    return user;
+  }
+
+  void removeUser() {
+    localStorage.remove('user');
   }
 
   User getUser() {
-    var getUser = new User();
-    getUser.role = Role.Administrator;
-    return getUser;
+    return user;
   }
 }
 

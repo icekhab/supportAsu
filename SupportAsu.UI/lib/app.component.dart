@@ -3,7 +3,7 @@ import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
 import 'shared/services/local-storage.service.dart';
 import 'shared/services/user.service.dart';
-import 'src/login/login.component.dart';
+import 'src/account/login.component.dart';
 import 'src/menu/menu.component.dart';
 
 @Component(
