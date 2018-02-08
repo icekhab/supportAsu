@@ -1,0 +1,44 @@
+<div class="filters">
+    <button class='btn--green open-filters-btn' (click)="showFilter = !showFilter">Показати фільтри</button>
+    <div class="filter-section" *ngIf="showFilter">
+        <div class="filter-form">
+            <div class="filter-info">
+                <div class="filter-block">
+                    <div class="input-field">
+                        <span class="input-lable">Дата з</span>
+                        <input type="date" id="datestart" class="sa-input">
+                    </div>
+                    <div class="input-field">
+                        <span class="input-lable">до</span>
+                        <input type="date" id="dateend" class="sa-input">
+                    </div>
+
+                </div>
+                <div class="filter-block">
+                    <div class="input-field">
+                        <span class="input-lable">Автор</span>
+                        <input type="text" id="author" class="sa-input">
+                    </div>
+                </div>
+                <!-- <div class="filter-block">
+                    <div class="input-field sa-select-chekbox">
+                        <span class="input-lable">Статус</span>
+                        <ul class="checkbox-list" id="status_list">
+                            @foreach (var item in ViewBag.Statuses as SelectList)
+                            {
+                            <li>
+                                <div class="ckeckbox-form">
+                                    <span class="sa-checkbox false" data-checked="false" data-val="@item.Value"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                    <input type="checkbox">
+                                    <span class="sa-label">@item.Text</span>
+                                </div>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div> -->
+            </div>
+            <button class='btn--orange' onclick="ApplyFilter()">Застосувати</button>
+        </div>
+    </div>
+</div>

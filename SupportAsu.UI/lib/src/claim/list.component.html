@@ -1,0 +1,47 @@
+<main class="content content-claims-list">
+    <!-- <input type="hidden" id="isAll" value="@ViewBag.isAll"> -->
+    <claim-filter></claim-filter>
+
+    <div class="claim-item claim-list-header sortable">
+        <div class="claim-theme">
+            <span class="sortable-column" name="Title">Тема</span>
+        </div>
+        <div class="claim-category">
+            <span class="sortable-column" name="Category">Категорія</span>
+        </div>
+        <div>
+            <span class="sortable-column" name="Author">Автор</span>
+        </div>
+        <div class="claim-date">
+            <span class="active-sort sort-desc sortable-column" order="desc" name="Date"> Дата подання</span>
+        </div>
+        <div class="claim-status">
+            <span class="sortable-column" name="Status.Value">Статус</span>
+        </div>
+        <div class="claim-more">
+            <span>Деталі</span>
+        </div>
+    </div>
+
+    <div id="claims">
+        <ul class="claims-list">
+            
+                <li class="claim-item ">
+                    <div class="claim-theme"><span>Тайтл</span></div>
+                    <div class="claim-category"><span>Категория</span></div>
+                    <div><span>Автор</span></div>
+                    <div class="claim-date"><span>25.05.1996</span></div>
+                    <div class="claim-status"><span class="claim--onconfirm">On confirm</span></div>
+                    <div class="claim-more"><a href="" class="btn--green">Деталі</a></div>
+                </li>
+                <li class="claim-item ">
+                    <div class="claim-theme"><span>Тайтл</span></div>
+                    <div class="claim-category"><span>Категория</span></div>
+                    <div><span>Автор</span></div>
+                    <div class="claim-date"><span>25.05.1996</span></div>
+                    <div class="claim-status"><span class="claim--onconfirm">On confirm</span></div>
+                    <div class="claim-more"><a href="" class="btn--green">Деталі</a></div>
+                </li>
+        </ul>
+    </div>
+</main>

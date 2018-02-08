@@ -49,6 +49,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.2+14"
+  bootstrap_sass:
+    description:
+      name: bootstrap_sass
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0-beta.2"
   browser:
     description:
       name: browser
@@ -133,6 +139,18 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.7"
+  dev_string_converter:
+    description:
+      name: dev_string_converter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
+  font_awesome:
+    description:
+      name: font_awesome
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.7.0"
   func:
     description:
       name: func
@@ -199,6 +217,18 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
+  ng_bootstrap:
+    description:
+      name: ng_bootstrap
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.2"
+  node_shims:
+    description:
+      name: node_shims
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.3"
   package_config:
     description:
       name: package_config
@@ -259,6 +289,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.1"
+  stream_transform:
+    description:
+      name: stream_transform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.9"
   string_scanner:
     description:
       name: string_scanner
@@ -277,6 +313,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.5"
+  unittest:
+    description:
+      name: unittest
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.7"
   utf:
     description:
       name: utf

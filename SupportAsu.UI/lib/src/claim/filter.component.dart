@@ -3,8 +3,8 @@ import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 
 @Component(
-    selector: 'claim-list',
-    templateUrl: 'claim-list.component.html',
+    selector: 'claim-filter',
+    templateUrl: 'filter.component.html',
     directives: const [
       CORE_DIRECTIVES,
       formDirectives,
@@ -15,10 +15,16 @@ import 'package:angular_forms/angular_forms.dart';
       NgModel
     ],
     exportAs: 'ngForm')
-class ClaimListComponent {
+class ClaimFilterComponent {
   Filter filter;
   int total = 100;
-  ClaimListComponent() {
+  bool showFilter = false;
+
+  ClaimFilterComponent() {
     filter = new Filter.init(10, 0);
   }
 }
+
+const List heroSwitchComponents = const [
+  ClaimFilterComponent
+];

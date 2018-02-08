@@ -1,5 +1,5 @@
 import '../models/user.dart';
-import 'dart:convert';
+import '../static/role.dart';
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:dartson/dartson.dart';
@@ -26,7 +26,9 @@ class LocalStorageService {
   }
 
   User getUser() {
-    return user;
+    var getUser = new User();
+    getUser.role = Role.Administrator;
+    return getUser;
   }
 }
 
@@ -37,7 +39,6 @@ class DateTimeParser extends TypeTransformer {
 
   @override
   encode(value) {
-    // TODO: implement encode
     return value.toString();
   }
 }

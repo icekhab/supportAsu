@@ -1,7 +1,7 @@
 import '../../shared/models/user.dart';
 import '../../shared/services/local-storage.service.dart';
 import '../../shared/static/role.dart';
-import '../claim/claim-list.component.dart';
+import '../claim/list.component.dart';
 import '../task/task-list.component.dart';
 import 'dart:async';
 import 'package:angular/angular.dart';
@@ -41,7 +41,7 @@ class MenuComponent implements OnActivate{
   }
 
   void logOff() {}
-  // TODO: implement fn
+
   @override
   Future<bool> routerOnActivate(
       ComponentInstruction next, ComponentInstruction prev) {
@@ -50,7 +50,7 @@ class MenuComponent implements OnActivate{
     if (user == null) {
       _router.navigateByUrl('/login');
       return false as FutureOr<bool>;
-    } else {
+    } else if (_router.root.lastNavigationAttempt == '' || _router.root.lastNavigationAttempt == '/' || _router.root.lastNavigationAttempt == '/main'){
       String homePage;
       switch (user.role) {
         case Role.Administrator:
